@@ -1,0 +1,52 @@
+{
+  "title": "宝贝的学习周历",
+  "weekStart": "2026-04-27",
+  "days": [
+    {
+      "events": [
+        { "type": "daily_tasks", "items": ["英语托托", "数学题打卡", "默写高手"] },
+        { "type": "school",  "time": "15:20", "title": "学校放学",  "icon": "🏫" },
+        { "type": "class",   "time": "17:00", "title": "音乐课",    "subtitle": "猫头鹰", "icon": "🎵" }
+      ]
+    },
+    {
+      "events": [
+        { "type": "daily_tasks", "items": ["英语托托", "数学题打卡", "默写高手"] },
+        { "type": "school", "time": "16:20", "title": "学校放学", "icon": "🏫" },
+        { "type": "free",   "title": "自由安排 / 查漏补缺" }
+      ]
+    },
+    {
+      "events": [
+        { "type": "daily_tasks", "items": ["英语托托", "数学题打卡", "默写高手"] },
+        { "type": "school", "time": "16:20", "title": "学校放学", "icon": "🏫" },
+        { "type": "free",   "title": "自由安排 / 查漏补缺" }
+      ]
+    },
+    {
+      "events": [
+        { "type": "daily_tasks", "items": ["英语托托", "数学题打卡", "默写高手"] },
+        { "type": "school",    "time": "15:30", "title": "学校放学", "icon": "🏫" },
+        { "type": "cancelled", "time": "15:40", "title": "画画课",   "subtitle": "本周停课", "icon": "🎨" }
+      ]
+    },
+    {
+      "events": [
+        { "type": "holiday", "title": "🎉 五一假期", "subtitle": "前往济宁" },
+        { "type": "travel",  "time": "16:39", "title": "北京南站", "subtitle": "高铁 → 济宁", "icon": "🚄" }
+      ]
+    },
+    {
+      "events": [
+        { "type": "holiday", "title": "🎉 五一假期", "subtitle": "在济宁" },
+        { "type": "free", "title": "假期游玩，好好放松 🎡" }
+      ]
+    },
+    {
+      "events": [
+        { "type": "holiday", "title": "🎉 五一假期", "subtitle": "在济宁" },
+        { "type": "free", "title": "假期游玩，好好放松 🎡" }
+      ]
+    }
+  ]
+}
