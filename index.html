@@ -7,141 +7,132 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB',sans-serif;background:#FFF5FB;min-height:100vh}
-body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,#FFB6D9 1.2px,transparent 1.2px);background-size:28px 28px;opacity:.18;pointer-events:none;z-index:0}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,#FFB6D9 1.2px,transparent 1.2px);background-size:28px 28px;opacity:.15;pointer-events:none;z-index:0}
 
 /* ── Header ── */
 .header{background:linear-gradient(135deg,#FFB6D9 0%,#CDB4F8 55%,#A8D8FF 100%);padding:14px 16px 16px;position:relative;overflow:hidden;z-index:1}
-.header-deco{position:absolute;top:8px;right:14px;font-size:18px;opacity:.4;letter-spacing:4px;pointer-events:none}
-.header-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.header-left{display:flex;align-items:center;gap:8px}
-.header-icon{font-size:26px}
-.header-title{font-size:19px;font-weight:900;color:#fff;text-shadow:0 2px 8px rgba(180,80,150,.25)}
-.week-nav{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.35);border-radius:20px;padding:5px 10px}
-.nav-btn{background:none;border:none;color:#fff;font-size:16px;cursor:pointer;padding:0 4px;opacity:.9;line-height:1}
-.nav-btn:disabled{opacity:.3;cursor:default}
-.header-date{font-size:12px;font-weight:700;color:#fff;white-space:nowrap}
+.hdeco{position:absolute;top:8px;right:14px;font-size:18px;opacity:.4;letter-spacing:4px;pointer-events:none}
+.hrow{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.hleft{display:flex;align-items:center;gap:8px}
+.hicon{font-size:26px}
+.htitle{font-size:19px;font-weight:900;color:#fff;text-shadow:0 2px 8px rgba(180,80,150,.25)}
+.wnav{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.32);border-radius:20px;padding:5px 10px}
+.nbtn{background:none;border:none;color:#fff;font-size:18px;cursor:pointer;padding:0 2px;line-height:1;font-weight:700}
+.nbtn:disabled{opacity:.25;cursor:default}
+.hdate{font-size:12px;font-weight:700;color:#fff;white-space:nowrap;min-width:90px;text-align:center}
 
 /* ── Edit toolbar ── */
-.edit-toolbar{display:none;position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#FF9FCE,#C9B8FF);padding:10px 16px;align-items:center;justify-content:space-between}
-.edit-toolbar.show{display:flex}
-.edit-label{color:#fff;font-size:14px;font-weight:700}
-.toolbar-btns{display:flex;gap:8px}
+.etoolbar{display:none;position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#FF9FCE,#C9B8FF);padding:10px 16px;align-items:center;justify-content:space-between}
+.etoolbar.show{display:flex}
+.elabel{color:#fff;font-size:14px;font-weight:700}
+.tbtns{display:flex;gap:8px}
 .tbtn{padding:7px 16px;border-radius:20px;border:none;font-size:13px;font-weight:700;cursor:pointer}
-.tbtn-cancel{background:rgba(255,255,255,.3);color:#fff}
-.tbtn-save{background:#fff;color:#C084FC}
+.tbtn-c{background:rgba(255,255,255,.28);color:#fff}
+.tbtn-s{background:#fff;color:#C084FC}
 
 /* ── Calendar ── */
-.calendar-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:12px 10px 100px;position:relative;z-index:1}
-.calendar{display:grid;grid-template-columns:repeat(7,minmax(120px,1fr));gap:8px;min-width:840px}
-.day-col{display:flex;flex-direction:column;gap:7px}
-.day-header{text-align:center;padding:9px 6px 7px;background:#fff;border-radius:16px;box-shadow:0 2px 8px rgba(200,100,180,.1);border:2px solid transparent}
-.day-header.is-weekend{border-color:#FFB6D9}
-.day-header.is-today{background:linear-gradient(135deg,#FF9FCE,#C9B8FF)}
-.day-name{font-size:14px;font-weight:800;color:#444}
-.day-name.wknd{color:#FF6B8A}
-.day-header.is-today .day-name,.day-header.is-today .day-date{color:#fff}
-.day-date{font-size:11px;color:#bbb;margin-top:2px}
+.cwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:12px 10px 110px;position:relative;z-index:1}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(118px,1fr));gap:8px;min-width:830px}
+.dcol{display:flex;flex-direction:column;gap:7px}
+.dhdr{text-align:center;padding:9px 5px 7px;background:#fff;border-radius:15px;box-shadow:0 2px 8px rgba(200,100,180,.1);border:2px solid transparent}
+.dhdr.wknd{border-color:#FFB6D9}
+.dhdr.today{background:linear-gradient(135deg,#FF9FCE,#C9B8FF)}
+.dname{font-size:14px;font-weight:800;color:#444}
+.dname.w{color:#FF6B8A}
+.dhdr.today .dname,.dhdr.today .ddate{color:#fff}
+.ddate{font-size:11px;color:#bbb;margin-top:2px}
 
 /* ── Cards ── */
-.card{border-radius:14px;padding:9px 11px;font-size:13px;position:relative}
-.card-daily{background:#FFFBEA;border:2px dashed #FBBF24}
-.daily-label{font-size:11px;font-weight:800;color:#F59E0B;margin-bottom:5px}
-.daily-item{font-size:12px;color:#666;line-height:1.7;padding-left:2px}
-.card-school{background:linear-gradient(135deg,#FFB347,#FF9F43);color:#fff}
-.card-class{background:linear-gradient(135deg,#F472B6,#C084FC);color:#fff}
-.card-holiday{background:linear-gradient(135deg,#FF8FAB,#FF6B8A);color:#fff;min-height:52px}
-.card-travel{background:linear-gradient(135deg,#60C8F5,#38B6FF);color:#fff}
-.card-free{background:#fff;border:1.5px solid #F9C8E0;color:#999}
-.card-cancelled{background:#F5F5F5;border:1.5px dashed #DDD;color:#C0C0C0}
-.badge-cancelled{display:inline-block;background:#E8E8E8;color:#C0C0C0;font-size:10px;border-radius:8px;padding:1px 7px;margin-top:3px}
-.card-time{font-size:11px;font-weight:700;opacity:.88;margin-bottom:3px}
-.card-main{display:flex;align-items:center;gap:5px}
-.card-icon{font-size:15px;flex-shrink:0}
-.card-title{font-weight:700;font-size:13px;line-height:1.3}
-.card-sub{font-size:11px;opacity:.85;margin-top:2px}
+.card{border-radius:13px;padding:9px 11px;font-size:13px;position:relative}
+.c-daily{background:#FFFBEA;border:2px dashed #FBBF24}
+.dlbl{font-size:11px;font-weight:800;color:#F59E0B;margin-bottom:5px}
+.ditem{font-size:12px;color:#666;line-height:1.7;padding-left:2px}
+.c-school{background:linear-gradient(135deg,#FFB347,#FF9F43);color:#fff}
+.c-class{background:linear-gradient(135deg,#F472B6,#C084FC);color:#fff}
+.c-holiday{background:linear-gradient(135deg,#FF8FAB,#FF6B8A);color:#fff;min-height:50px}
+.c-travel{background:linear-gradient(135deg,#60C8F5,#38B6FF);color:#fff}
+.c-free{background:#fff;border:1.5px solid #F9C8E0;color:#999}
+.c-cancelled{background:#F5F5F5;border:1.5px dashed #DDD;color:#C0C0C0}
+.cbadge{display:inline-block;background:#E8E8E8;color:#C0C0C0;font-size:10px;border-radius:8px;padding:1px 6px;margin-top:3px}
+.ctime{font-size:11px;font-weight:700;opacity:.88;margin-bottom:3px}
+.cmain{display:flex;align-items:center;gap:5px}
+.cicon{font-size:15px;flex-shrink:0}
+.ctitle{font-weight:700;font-size:13px;line-height:1.3}
+.csub{font-size:11px;opacity:.85;margin-top:2px}
 
-/* ── Edit overlays on cards ── */
-.card-edit-bar{position:absolute;top:4px;right:4px;display:flex;gap:3px}
-.cedit-btn{width:22px;height:22px;border-radius:50%;border:none;cursor:pointer;font-size:11px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.18);color:#fff;line-height:1}
-.add-event-btn{background:#fff;border:1.5px dashed #FFB6D9;color:#FF9FCE;border-radius:14px;padding:7px;font-size:12px;font-weight:700;cursor:pointer;width:100%}
-.add-event-btn:active{background:#FFF0F8}
+/* ── Edit overlays ── */
+.cebar{position:absolute;top:4px;right:4px;display:flex;gap:3px}
+.cebtn{width:22px;height:22px;border-radius:50%;border:none;cursor:pointer;font-size:10px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.2);color:#fff}
+.addbtn{background:#fff;border:1.5px dashed #FFB6D9;color:#FF9FCE;border-radius:13px;padding:7px;font-size:12px;font-weight:700;cursor:pointer;width:100%;margin-top:2px}
 
 /* ── FABs ── */
-.fabs{position:fixed;bottom:24px;right:16px;display:flex;flex-direction:column;gap:10px;z-index:50}
-.fab{width:50px;height:50px;border-radius:50%;border:none;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.18);transition:transform .15s}
+.fabs{position:fixed;bottom:22px;right:14px;display:flex;flex-direction:column;gap:9px;z-index:50}
+.fab{width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.18);transition:transform .15s}
 .fab:active{transform:scale(.9)}
-.fab-share{background:linear-gradient(135deg,#67D948,#52C41A)}
-.fab-prompt{background:linear-gradient(135deg,#FAAD14,#FFC53D)}
-.fab-edit{background:linear-gradient(135deg,#FFB6D9,#C9B8FF)}
-.fab-history{background:linear-gradient(135deg,#A8D8FF,#60C8F5)}
-.fab-settings{background:linear-gradient(135deg,#C0C0C0,#A0A0A0)}
+.f-share{background:linear-gradient(135deg,#67D948,#52C41A)}
+.f-ai{background:linear-gradient(135deg,#FAAD14,#FFC53D)}
+.f-hist{background:linear-gradient(135deg,#A8D8FF,#60C8F5)}
+.f-edit{background:linear-gradient(135deg,#FFB6D9,#C9B8FF)}
 
-/* ── Bottom sheet overlays ── */
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.38);z-index:100;align-items:flex-end}
-.overlay.open{display:flex}
-.sheet{background:#fff;border-radius:24px 24px 0 0;padding:14px 18px 32px;width:100%;max-height:88vh;overflow-y:auto}
-.sheet-handle{width:36px;height:4px;background:#E8D5EE;border-radius:2px;margin:0 auto 14px}
-.sheet-title{font-size:16px;font-weight:800;color:#333;margin-bottom:6px}
-.sheet-hint{font-size:12px;color:#AAA;line-height:1.6;margin-bottom:12px}
+/* ── Overlays ── */
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.38);z-index:100;align-items:flex-end}
+.ov.open{display:flex}
+.sheet{background:#fff;border-radius:22px 22px 0 0;padding:12px 16px 30px;width:100%;max-height:88vh;overflow-y:auto}
+.shdl{width:34px;height:4px;background:#E8D5EE;border-radius:2px;margin:0 auto 12px}
+.shtitle{font-size:16px;font-weight:800;color:#333;margin-bottom:6px}
+.shhint{font-size:12px;color:#AAA;line-height:1.6;margin-bottom:10px}
+.sbtns{display:flex;gap:8px;margin-top:10px}
+.sbtn{flex:1;padding:12px;border-radius:12px;border:none;font-size:14px;font-weight:700;cursor:pointer}
+.sb-c{background:#F5F5F5;color:#999}
+.sb-p{background:linear-gradient(135deg,#FFB6D9,#C9B8FF);color:#fff}
+.sb-y{background:linear-gradient(135deg,#FAAD14,#FFC53D);color:#fff}
 
-/* ── Settings fields ── */
-.field-label{font-size:12px;font-weight:700;color:#888;margin-bottom:4px}
-input,textarea{width:100%;border:2px solid #F3D0E8;border-radius:12px;padding:10px 12px;font-size:14px;outline:none;color:#555;margin-bottom:10px;font-family:inherit}
+/* ── Form fields ── */
+.flbl{font-size:12px;font-weight:700;color:#888;margin-bottom:4px;margin-top:8px}
+input,textarea{width:100%;border:2px solid #F3D0E8;border-radius:11px;padding:9px 12px;font-size:14px;outline:none;color:#555;font-family:inherit}
 input:focus,textarea:focus{border-color:#C9B8FF}
-textarea{height:220px;font-family:'Menlo','Monaco',monospace;font-size:11px;line-height:1.55;resize:vertical;margin-bottom:0}
-.link-row{display:flex;gap:7px;align-items:center;margin-bottom:8px}
-.link-row input{margin-bottom:0;font-size:12px}
-.copy-btn{padding:9px 13px;border-radius:11px;border:none;background:#F3D0E8;color:#C084FC;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0}
+textarea{height:110px;font-size:13px;line-height:1.6;resize:vertical;display:block}
 
-/* ── Sheet buttons ── */
-.sheet-btns{display:flex;gap:8px;margin-top:12px}
-.sbtn{flex:1;padding:13px;border-radius:13px;border:none;font-size:14px;font-weight:700;cursor:pointer}
-.sbtn-cancel{background:#F5F5F5;color:#999}
-.sbtn-pink{background:linear-gradient(135deg,#FFB6D9,#C9B8FF);color:#fff}
-.sbtn-yellow{background:linear-gradient(135deg,#FAAD14,#FFC53D);color:#fff}
-.sbtn-blue{background:linear-gradient(135deg,#60C8F5,#38B6FF);color:#fff}
-
-/* ── Event type pills ── */
-.type-pills{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;-webkit-overflow-scrolling:touch}
-.type-pill{flex-shrink:0;padding:6px 12px;border-radius:20px;border:2px solid #EEE;font-size:12px;font-weight:700;cursor:pointer;color:#888;background:#fff;transition:all .15s}
-.type-pill.active{border-color:transparent;color:#fff}
-.type-pill[data-type=daily_tasks].active{background:#FBBF24}
-.type-pill[data-type=school].active{background:#FF9F43}
-.type-pill[data-type=class].active{background:#C084FC}
-.type-pill[data-type=holiday].active{background:#FF6B8A}
-.type-pill[data-type=travel].active{background:#38B6FF}
-.type-pill[data-type=free].active{background:#AAA}
-.type-pill[data-type=cancelled].active{background:#BBB}
+/* ── Type pills ── */
+.tpills{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:4px;-webkit-overflow-scrolling:touch}
+.tp{flex-shrink:0;padding:6px 12px;border-radius:20px;border:2px solid #EEE;font-size:12px;font-weight:700;cursor:pointer;color:#888;background:#fff}
+.tp.on{border-color:transparent;color:#fff}
+.tp[data-t=daily_tasks].on{background:#FBBF24}
+.tp[data-t=school].on{background:#FF9F43}
+.tp[data-t=class].on{background:#C084FC}
+.tp[data-t=holiday].on{background:#FF6B8A}
+.tp[data-t=travel].on{background:#38B6FF}
+.tp[data-t=free].on{background:#AAA}
+.tp[data-t=cancelled].on{background:#BBB}
 
 /* ── Icon picker ── */
-.icon-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:10px;-webkit-overflow-scrolling:touch}
-.icon-opt{font-size:22px;cursor:pointer;padding:4px;border-radius:8px;flex-shrink:0}
-.icon-opt:hover,.icon-opt.selected{background:#F3D0E8}
+.icrow{display:flex;gap:6px;overflow-x:auto;padding:4px 0 6px;-webkit-overflow-scrolling:touch}
+.icopt{font-size:22px;cursor:pointer;padding:3px;border-radius:8px;flex-shrink:0}
+.icopt.sel,.icopt:hover{background:#F3D0E8}
 
-/* ── History list ── */
-.history-item{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:14px;background:#FFF5FB;border:1.5px solid #F3D0E8;margin-bottom:8px;cursor:pointer}
-.history-item.active{background:linear-gradient(135deg,#FFE9F3,#EDE9FF);border-color:#C9B8FF}
-.history-range{font-size:14px;font-weight:700;color:#555}
-.history-cur{font-size:11px;color:#C084FC;font-weight:700;margin-top:2px}
-.history-del{background:none;border:none;font-size:16px;cursor:pointer;padding:4px;border-radius:8px;flex-shrink:0}
-.history-del:hover{background:#FFE9F3}
-.history-add{width:100%;padding:12px;border-radius:14px;border:2px dashed #FFB6D9;background:#fff;color:#FF9FCE;font-size:13px;font-weight:700;cursor:pointer;margin-top:4px}
+/* ── History ── */
+.hist-item{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-radius:13px;background:#FFF5FB;border:1.5px solid #F3D0E8;margin-bottom:7px;cursor:pointer}
+.hist-item.cur{background:linear-gradient(135deg,#FFE9F3,#EDE9FF);border-color:#C9B8FF}
+.hist-range{font-size:14px;font-weight:700;color:#555}
+.hist-tag{font-size:11px;color:#C084FC;font-weight:700;margin-top:2px}
+.hist-del{background:none;border:none;font-size:16px;cursor:pointer;padding:4px 6px;border-radius:8px;flex-shrink:0}
+.hist-add{width:100%;padding:11px;border-radius:13px;border:2px dashed #FFB6D9;background:#fff;color:#FF9FCE;font-size:13px;font-weight:700;cursor:pointer;margin-top:2px}
 
-/* ── Prompt box ── */
-.prompt-box{background:#F9F0FF;border:1.5px solid #E0D0FF;border-radius:12px;padding:12px;font-size:11px;color:#555;line-height:1.7;white-space:pre-wrap;word-break:break-word;max-height:280px;overflow-y:auto}
+/* ── Prompt ── */
+.pbox{background:#F9F0FF;border:1.5px solid #E0D0FF;border-radius:12px;padding:12px;font-size:11px;color:#555;line-height:1.7;white-space:pre-wrap;word-break:break-word;max-height:260px;overflow-y:auto}
+
+/* ── Token sheet ── */
+.token-hint{background:#FFF8E1;border:1.5px solid #FFE082;border-radius:11px;padding:11px;font-size:12px;color:#888;line-height:1.6;margin-bottom:10px}
 
 /* ── Loading ── */
 .loading{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#FFF5FB;z-index:200;font-size:14px;color:#C9B8FF;gap:10px}
-.loading.hidden{display:none}
-.spin{font-size:34px;animation:spin 1.5s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
+.loading.gone{display:none}
+.spin{font-size:34px;animation:sp 1.5s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
 
 /* ── Toast ── */
-.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:rgba(40,40,40,.82);color:#fff;padding:9px 20px;border-radius:20px;font-size:13px;display:none;z-index:300;white-space:nowrap}
+.toast{position:fixed;bottom:86px;left:50%;transform:translateX(-50%);background:rgba(40,40,40,.82);color:#fff;padding:9px 20px;border-radius:20px;font-size:13px;display:none;z-index:300;white-space:nowrap;max-width:90vw;text-align:center}
 .toast.show{display:block}
-
-/* ── Setup hint ── */
-.setup-hint{background:#FFF0F8;border:1.5px dashed #FFB6D9;border-radius:12px;padding:12px;margin-bottom:10px;font-size:12px;color:#888;line-height:1.7}
 </style>
 </head>
 <body>
@@ -150,113 +141,105 @@ textarea{height:220px;font-family:'Menlo','Monaco',monospace;font-size:11px;line
 
 <!-- Header -->
 <div class="header">
-  <div class="header-deco">⭐🌈🎀✨🌸</div>
-  <div class="header-row">
-    <div class="header-left">
-      <span class="header-icon">🌟</span>
-      <span class="header-title" id="appTitle">宝贝的学习周历</span>
-    </div>
-    <div class="week-nav">
-      <button class="nav-btn" id="btnPrev" onclick="prevWeek()">‹</button>
-      <span class="header-date" id="dateRange">—</span>
-      <button class="nav-btn" id="btnNext" onclick="nextWeek()">›</button>
+  <div class="hdeco">⭐🌈🎀✨🌸</div>
+  <div class="hrow">
+    <div class="hleft"><span class="hicon">🌟</span><span class="htitle" id="appTitle">宝贝的学习周历</span></div>
+    <div class="wnav">
+      <button class="nbtn" id="btnPrev" onclick="goWeek(-1)">‹</button>
+      <span class="hdate" id="dateRange">—</span>
+      <button class="nbtn" id="btnNext" onclick="goWeek(1)">›</button>
     </div>
   </div>
 </div>
 
 <!-- Edit toolbar -->
-<div class="edit-toolbar" id="editToolbar">
-  <span class="edit-label">✏️ 编辑模式</span>
-  <div class="toolbar-btns">
-    <button class="tbtn tbtn-cancel" onclick="cancelEdits()">取消</button>
-    <button class="tbtn tbtn-save"   onclick="saveEdits()" id="saveEditBtn">保存</button>
+<div class="etoolbar" id="etb">
+  <span class="elabel">✏️ 编辑模式</span>
+  <div class="tbtns">
+    <button class="tbtn tbtn-c" onclick="cancelEdit()">取消</button>
+    <button class="tbtn tbtn-s" onclick="saveEdit()" id="savebtn">保存</button>
   </div>
 </div>
 
 <!-- Calendar -->
-<div class="calendar-wrap"><div class="calendar" id="calendar"></div></div>
+<div class="cwrap"><div class="cal" id="cal"></div></div>
 
 <!-- FABs -->
 <div class="fabs">
-  <button class="fab fab-settings" onclick="showSetup()"   title="设置">⚙️</button>
-  <button class="fab fab-share"    onclick="shareApp()"    title="分享">🔗</button>
-  <button class="fab fab-prompt"   onclick="openPrompt()"  title="AI提示词">🤖</button>
-  <button class="fab fab-history"  onclick="openHistory()" title="历史记录">📅</button>
-  <button class="fab fab-edit"     onclick="toggleEdit()"  id="fabEdit" title="编辑">✏️</button>
+  <button class="fab f-share" onclick="share()"      title="分享">🔗</button>
+  <button class="fab f-ai"    onclick="openAI()"     title="AI提示词">🤖</button>
+  <button class="fab f-hist"  onclick="openHist()"   title="历史">📅</button>
+  <button class="fab f-edit"  onclick="toggleEdit()" title="编辑" id="fabEdit">✏️</button>
 </div>
 
-<!-- ── 设置 ── -->
-<div class="overlay" id="setupOverlay" onclick="bgClose(event,'setupOverlay')">
+<!-- 历史 -->
+<div class="ov" id="ovHist" onclick="bgc(event,'ovHist')">
   <div class="sheet">
-    <div class="sheet-handle"></div>
-    <div class="sheet-title">⚙️ GitHub 设置</div>
-    <div class="setup-hint">配置你的 GitHub 信息，日程数据将保存到你的仓库，家人通过固定链接访问。</div>
-    <div class="field-label">GitHub 用户名</div>
-    <input id="cfgOwner" placeholder="例：Dongran213" oninput="updateLinkPreview()"/>
-    <div class="field-label">仓库名称</div>
-    <input id="cfgRepo"  placeholder="例：baobei-schedule" oninput="updateLinkPreview()"/>
-    <div class="field-label">Personal Access Token</div>
-    <input id="cfgToken" type="password" placeholder="ghp_xxxxxxxxxxxx"/>
-    <div class="field-label">家人访问链接</div>
-    <div class="link-row">
-      <input id="shareLink" readonly/>
-      <button class="copy-btn" onclick="copyShareLink()">复制</button>
-    </div>
-    <div class="sheet-btns">
-      <button class="sbtn sbtn-cancel" onclick="closeOverlay('setupOverlay')">取消</button>
-      <button class="sbtn sbtn-pink"   onclick="saveConfig()">保存 ✨</button>
+    <div class="shdl"></div>
+    <div class="shtitle">📅 历史周记录</div>
+    <div id="histList"></div>
+    <button class="hist-add" onclick="addWeek()">＋ 创建下一周（自动复制本周结构）</button>
+  </div>
+</div>
+
+<!-- 事件表单 -->
+<div class="ov" id="ovForm" onclick="bgc(event,'ovForm')">
+  <div class="sheet">
+    <div class="shdl"></div>
+    <div class="shtitle" id="formTitle">添加活动</div>
+    <div class="tpills" id="tpills"></div>
+    <input type="hidden" id="fType"/>
+    <div id="fldItems"><div class="flbl">每日任务（每行一条）</div><textarea id="fItems" placeholder="英语托托&#10;数学题打卡&#10;默写高手"></textarea></div>
+    <div id="fldTime"><div class="flbl">时间</div><input id="fTime" placeholder="15:20"/></div>
+    <div id="fldTitle"><div class="flbl">标题</div><input id="fTitle" placeholder="学校放学"/></div>
+    <div id="fldSub"><div class="flbl">副标题</div><input id="fSub" placeholder="猫头鹰"/></div>
+    <div id="fldIcon"><div class="flbl">图标（点击或手动输入）</div><div class="icrow" id="icrow"></div><input id="fIcon" placeholder="🏫" style="margin-top:6px"/></div>
+    <div class="sbtns">
+      <button class="sbtn sb-c" onclick="closeOv('ovForm')">取消</button>
+      <button class="sbtn sb-p" onclick="saveForm()">确定 ✨</button>
     </div>
   </div>
 </div>
 
-<!-- ── 历史记录 ── -->
-<div class="overlay" id="historyOverlay" onclick="bgClose(event,'historyOverlay')">
+<!-- Token 输入 -->
+<div class="ov" id="ovToken" onclick="bgc(event,'ovToken')">
   <div class="sheet">
-    <div class="sheet-handle"></div>
-    <div class="sheet-title">📅 历史周记录</div>
-    <div id="historyList"></div>
-    <button class="history-add" onclick="addNewWeek()">＋ 创建下一周（自动复制本周）</button>
-  </div>
-</div>
-
-<!-- ── 事件编辑表单 ── -->
-<div class="overlay" id="eventFormOverlay" onclick="bgClose(event,'eventFormOverlay')">
-  <div class="sheet">
-    <div class="sheet-handle"></div>
-    <div class="sheet-title" id="formTitle">添加活动</div>
-    <div class="type-pills" id="typePills"></div>
-    <input type="hidden" id="fType" value="school"/>
-
-    <div id="fieldItems">
-      <div class="field-label">每日任务（每行一条）</div>
-      <textarea id="fItems" placeholder="英语托托&#10;数学题打卡&#10;默写高手" style="height:120px"></textarea>
-    </div>
-    <div id="fieldTime"><div class="field-label">时间</div><input id="fTime" placeholder="15:20"/></div>
-    <div id="fieldTitle"><div class="field-label">标题</div><input id="fTitle" placeholder="学校放学"/></div>
-    <div id="fieldSubtitle"><div class="field-label">副标题</div><input id="fSubtitle" placeholder="猫头鹰"/></div>
-    <div id="fieldIcon">
-      <div class="field-label">图标（点击选择或手动输入）</div>
-      <div class="icon-row" id="iconRow"></div>
-      <input id="fIcon" placeholder="🏫" style="margin-top:6px"/>
-    </div>
-
-    <div class="sheet-btns">
-      <button class="sbtn sbtn-cancel" onclick="closeOverlay('eventFormOverlay')">取消</button>
-      <button class="sbtn sbtn-pink"   onclick="saveEventForm()">确定 ✨</button>
+    <div class="shdl"></div>
+    <div class="shtitle">🔑 编辑验证</div>
+    <div class="token-hint">编辑日程需要 GitHub Token 验证身份，输入一次后自动记住，以后直接编辑无需再次输入。</div>
+    <div class="flbl">Personal Access Token</div>
+    <input id="tokenInput" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"/>
+    <div class="sbtns">
+      <button class="sbtn sb-c" onclick="closeOv('ovToken')">取消</button>
+      <button class="sbtn sb-p" onclick="confirmToken()">确认并开始编辑</button>
     </div>
   </div>
 </div>
 
-<!-- ── AI提示词 ── -->
-<div class="overlay" id="promptOverlay" onclick="bgClose(event,'promptOverlay')">
+<!-- AI 提示词 -->
+<div class="ov" id="ovAI" onclick="bgc(event,'ovAI')">
   <div class="sheet">
-    <div class="sheet-handle"></div>
-    <div class="sheet-title">🤖 AI 生成提示词</div>
-    <div class="sheet-hint">复制后发给 Claude，得到 JSON 后用"编辑模式"里的 JSON 导入粘贴。</div>
-    <div class="prompt-box" id="promptBox"></div>
-    <div class="sheet-btns">
-      <button class="sbtn sbtn-cancel" onclick="closeOverlay('promptOverlay')">关闭</button>
-      <button class="sbtn sbtn-yellow" onclick="copyPrompt()">复制提示词 📋</button>
+    <div class="shdl"></div>
+    <div class="shtitle">🤖 AI 生成提示词</div>
+    <div class="shhint">复制提示词 → 发给 Claude → 得到 JSON → 用编辑模式的「导入JSON」功能粘贴</div>
+    <div class="pbox" id="pbox"></div>
+    <div class="sbtns">
+      <button class="sbtn sb-c" onclick="closeOv('ovAI')">关闭</button>
+      <button class="sbtn sb-y" onclick="copyAI()">复制提示词 📋</button>
+    </div>
+  </div>
+</div>
+
+<!-- JSON 导入（在编辑模式下用） -->
+<div class="ov" id="ovJson" onclick="bgc(event,'ovJson')">
+  <div class="sheet">
+    <div class="shdl"></div>
+    <div class="shtitle">📋 导入 AI 生成的 JSON</div>
+    <div class="shhint">把 AI 回复的 JSON 粘贴到这里，点确认自动更新日程</div>
+    <textarea id="jsonInput" placeholder='{"title":"宝贝的学习周历","weekStart":"2026-05-11","days":[...]}' style="height:200px;font-family:monospace;font-size:11px;"></textarea>
+    <div class="sbtns">
+      <button class="sbtn sb-c" onclick="closeOv('ovJson')">取消</button>
+      <button class="sbtn sb-p" onclick="importJson()">导入 ✨</button>
     </div>
   </div>
 </div>
@@ -264,208 +247,233 @@ textarea{height:220px;font-family:'Menlo','Monaco',monospace;font-size:11px;line
 <div class="toast" id="toast"></div>
 
 <script>
-// ═══ CONSTANTS ═══
-const DAY_NAMES = ['周一','周二','周三','周四','周五','周六','周日'];
-const ICONS = ['🏫','🎵','🎨','📚','⚽','🏊','🎮','🚄','✈️','🎉','🎡','🌸','🍕','🎂','🎠','🏖️'];
+// ═══ 配置（已预设，无需修改）═══
+const OWNER     = 'Dongran213';
+const REPO      = 'baobei-schedule';
+const PAGES_URL = `https://${OWNER}.github.io/${REPO}/`;
+const RAW_URL   = () => `https://raw.githubusercontent.com/${OWNER}/${REPO}/main/schedule.json?t=${Date.now()}`;
+const API_URL   = `https://api.github.com/repos/${OWNER}/${REPO}/contents/schedule.json`;
+
+const DAYS  = ['周一','周二','周三','周四','周五','周六','周日'];
+const ICONS = ['🏫','🎵','🎨','📚','⚽','🏊','🎮','🚄','✈️','🎉','🎡','🌸','🍕','🎂','🎠','🏖️','🌈','⭐'];
 const TYPES = [
   {v:'daily_tasks',l:'每日必做'},{v:'school',l:'放学'},{v:'class',l:'课外班'},
   {v:'holiday',l:'假期'},{v:'travel',l:'出行'},{v:'free',l:'自由时间'},{v:'cancelled',l:'停课'}
 ];
 
-// ═══ STATE ═══
-let allData    = { weeks: [] };
-let viewIdx    = 0;
-let editMode   = false;
-let editSnap   = null; // deep clone when entering edit mode
-let pendingDay = 0;
-let pendingEv  = -1;   // -1 = new event
+// ═══ 状态 ═══
+let all      = { weeks:[] };
+let vi       = 0;        // 当前查看的周索引
+let editing  = false;
+let snap     = null;     // 编辑时的临时数据
+let pDay     = 0;
+let pEv      = -1;
 
-// ═══ CONFIG ═══
-const getCfg = () => ({
-  owner: localStorage.getItem('gh_owner') || '',
-  repo:  localStorage.getItem('gh_repo')  || 'baobei-schedule',
-  token: localStorage.getItem('gh_token') || ''
-});
-const pagesUrl = c => `https://${c.owner}.github.io/${c.repo}/`;
-const rawUrl   = c => `https://raw.githubusercontent.com/${c.owner}/${c.repo}/main/schedule.json?t=${Date.now()}`;
+// ═══ Token ═══
+const getToken = () => localStorage.getItem('gh_token') || '';
+const setToken = t => localStorage.setItem('gh_token', t);
 
-// ═══ DATA ═══
+// ═══ 数据加载（不需要 token，仓库是公开的）═══
 async function loadData() {
-  const c = getCfg();
-  const res = await fetch(rawUrl(c));
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const res = await fetch(RAW_URL());
+  if (!res.ok) throw new Error('加载失败 ' + res.status);
   const d = await res.json();
-  allData = d.weeks ? d : { weeks: [d] };
-  allData.weeks.sort((a,b) => a.weekStart.localeCompare(b.weekStart));
-  viewIdx = allData.weeks.length - 1;
+  all = d.weeks ? d : { weeks: [d] };
+  all.weeks.sort((a,b) => a.weekStart.localeCompare(b.weekStart));
+  vi = findCurWeek();
   render();
 }
 
-async function pushData() {
-  const c = getCfg();
-  const api = `https://api.github.com/repos/${c.owner}/${c.repo}/contents/schedule.json`;
-  const hdr = {'Authorization':`token ${c.token}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'};
-  const {sha} = await fetch(api,{headers:hdr}).then(r=>r.json());
-  const body  = JSON.stringify({
-    message:`更新宝贝的学习周历 ${new Date().toLocaleDateString('zh-CN')}`,
-    content: btoa(unescape(encodeURIComponent(JSON.stringify(allData,null,2)))), sha
-  });
-  const res = await fetch(api,{method:'PUT',headers:hdr,body});
-  if (!res.ok) throw new Error('提交失败');
+function findCurWeek() {
+  const today = new Date(); today.setHours(0,0,0,0);
+  for (let i = 0; i < all.weeks.length; i++) {
+    const ws = new Date(all.weeks[i].weekStart + 'T00:00:00');
+    const we = new Date(ws); we.setDate(we.getDate() + 6);
+    if (today >= ws && today <= we) return i;
+  }
+  return all.weeks.length - 1; // 没找到则显示最新一周
 }
 
-// ═══ WEEK NAV ═══
-function prevWeek(){ if(viewIdx>0){ viewIdx--; render(); } }
-function nextWeek(){ if(viewIdx<allData.weeks.length-1){ viewIdx++; render(); } }
+// ═══ 保存到 GitHub（需要 token）═══
+async function pushData() {
+  const tok = getToken();
+  if (!tok) throw new Error('NO_TOKEN');
+  const hdr = {'Authorization':`token ${tok}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'};
+  const cur = await fetch(API_URL, {headers:hdr}).then(r=>r.json());
+  if (!cur.sha) throw new Error('获取文件信息失败');
+  const res = await fetch(API_URL, {
+    method:'PUT', headers:hdr,
+    body: JSON.stringify({
+      message: `更新宝贝的学习周历 ${new Date().toLocaleDateString('zh-CN')}`,
+      content: btoa(unescape(encodeURIComponent(JSON.stringify(all,null,2)))),
+      sha: cur.sha
+    })
+  });
+  if (!res.ok) { const e=await res.json(); throw new Error(e.message||'提交失败'); }
+}
 
-// ═══ RENDER ═══
-function weekDates(s){
-  const b=new Date(s+'T00:00:00');
+// ═══ 渲染 ═══
+function weekDates(s) {
+  const b = new Date(s+'T00:00:00');
   return Array.from({length:7},(_,i)=>{ const d=new Date(b); d.setDate(d.getDate()+i); return d; });
 }
-function fmtRange(dates){
+function fmtRange(dates) {
   const s=dates[0],e=dates[6],[sm,sd,em,ed]=[s.getMonth()+1,s.getDate(),e.getMonth()+1,e.getDate()];
-  return sm===em?`${sm}月${sd}日-${ed}日`:`${sm}月${sd}日-${em}月${ed}日`;
+  return sm===em?`${sm}月${sd}-${ed}日`:`${sm}月${sd}日-${em}月${ed}日`;
 }
 function isToday(d){ const t=new Date(); return d.getDate()===t.getDate()&&d.getMonth()===t.getMonth()&&d.getFullYear()===t.getFullYear(); }
 
-function render(){
-  const wk = editMode ? editSnap : allData.weeks[viewIdx];
-  if(!wk) return;
+function render() {
+  const wk = editing ? snap : all.weeks[vi];
+  if (!wk) return;
   const dates = weekDates(wk.weekStart);
   document.getElementById('dateRange').textContent = fmtRange(dates);
-  document.getElementById('appTitle').textContent  = wk.title||'宝贝的学习周历';
-  document.title = (wk.title||'宝贝的学习周历')+' ⭐';
-  document.getElementById('btnPrev').disabled = viewIdx<=0;
-  document.getElementById('btnNext').disabled = viewIdx>=allData.weeks.length-1;
+  document.getElementById('appTitle').textContent  = wk.title || '宝贝的学习周历';
+  document.getElementById('btnPrev').disabled = vi <= 0;
+  document.getElementById('btnNext').disabled = vi >= all.weeks.length - 1;
 
-  const cal = document.getElementById('calendar');
+  const cal = document.getElementById('cal');
   cal.innerHTML = '';
-  dates.forEach((date,i)=>{
-    const wknd = i>=4;
-    const col  = document.createElement('div');
-    col.className = 'day-col';
-
-    const hdr = document.createElement('div');
-    hdr.className='day-header'+(wknd?' is-weekend':'')+(isToday(date)?' is-today':'');
-    hdr.innerHTML=`<div class="day-name${wknd?' wknd':''}">${DAY_NAMES[i]}</div><div class="day-date">${date.getMonth()+1}/${date.getDate()}</div>`;
+  dates.forEach((date,i) => {
+    const wknd = i >= 4;
+    const col  = document.createElement('div'); col.className='dcol';
+    const hdr  = document.createElement('div');
+    hdr.className = 'dhdr'+(wknd?' wknd':'')+(isToday(date)?' today':'');
+    hdr.innerHTML = `<div class="dname${wknd?' w':''}">${DAYS[i]}</div><div class="ddate">${date.getMonth()+1}/${date.getDate()}</div>`;
     col.appendChild(hdr);
-
-    (wk.days[i]?.events||[]).forEach((ev,ei)=>col.appendChild(buildCard(ev,i,ei)));
-
-    if(editMode){
-      const ab=document.createElement('button');
-      ab.className='add-event-btn';
-      ab.textContent='＋ 添加活动';
-      ab.onclick=()=>openEventForm(i,-1);
+    (wk.days[i]?.events||[]).forEach((ev,ei) => col.appendChild(mkCard(ev,i,ei)));
+    if (editing) {
+      const ab=document.createElement('button'); ab.className='addbtn';
+      ab.textContent='＋ 添加活动'; ab.onclick=()=>openForm(i,-1);
       col.appendChild(ab);
     }
     cal.appendChild(col);
   });
 }
 
-function buildCard(ev,di,ei){
-  const el=document.createElement('div');
-  if(ev.type==='daily_tasks'){
-    el.className='card card-daily';
-    el.innerHTML=`<div class="daily-label">✅ 每日必做</div>`+(ev.items||[]).map(x=>`<div class="daily-item">• ${x}</div>`).join('');
+function mkCard(ev,di,ei) {
+  const el = document.createElement('div');
+  if (ev.type==='daily_tasks') {
+    el.className='card c-daily';
+    el.innerHTML=`<div class="dlbl">✅ 每日必做</div>`+(ev.items||[]).map(x=>`<div class="ditem">• ${x}</div>`).join('');
   } else {
-    const cls={school:'card-school',class:'card-class',holiday:'card-holiday',travel:'card-travel',free:'card-free',cancelled:'card-cancelled'}[ev.type]||'card-free';
-    el.className=`card ${cls}`;
-    let h=ev.time?`<div class="card-time">${ev.time}</div>`:'';
-    h+=`<div class="card-main">${ev.icon?`<span class="card-icon">${ev.icon}</span>`:''}<span class="card-title">${ev.title||''}</span></div>`;
-    if(ev.subtitle) h+=`<div class="card-sub">${ev.subtitle}</div>`;
-    if(ev.type==='cancelled') h+=`<div><span class="badge-cancelled">本周停课</span></div>`;
+    const c={school:'c-school',class:'c-class',holiday:'c-holiday',travel:'c-travel',free:'c-free',cancelled:'c-cancelled'}[ev.type]||'c-free';
+    el.className=`card ${c}`;
+    let h=ev.time?`<div class="ctime">${ev.time}</div>`:'';
+    h+=`<div class="cmain">${ev.icon?`<span class="cicon">${ev.icon}</span>`:''}<span class="ctitle">${ev.title||''}</span></div>`;
+    if(ev.subtitle) h+=`<div class="csub">${ev.subtitle}</div>`;
+    if(ev.type==='cancelled') h+=`<span class="cbadge">本周停课</span>`;
     el.innerHTML=h;
   }
-  if(editMode){
-    const bar=document.createElement('div');
-    bar.className='card-edit-bar';
-    bar.innerHTML=`<button class="cedit-btn" onclick="openEventForm(${di},${ei})">✏️</button><button class="cedit-btn" onclick="deleteEvent(${di},${ei})">🗑</button>`;
+  if (editing) {
+    const bar=document.createElement('div'); bar.className='cebar';
+    bar.innerHTML=`<button class="cebtn" onclick="openForm(${di},${ei})">✏️</button><button class="cebtn" onclick="delEv(${di},${ei})">🗑</button>`;
     el.appendChild(bar);
   }
   return el;
 }
 
-// ═══ EDIT MODE ═══
-function toggleEdit(){
-  editMode ? cancelEdits() : enterEdit();
+// ═══ 周切换 ═══
+function goWeek(d) { vi=Math.max(0,Math.min(all.weeks.length-1,vi+d)); render(); }
+
+// ═══ 编辑模式 ═══
+function toggleEdit() {
+  editing ? cancelEdit() : startEdit();
 }
-function enterEdit(){
-  editMode=true;
-  editSnap=JSON.parse(JSON.stringify(allData.weeks[viewIdx]));
-  document.getElementById('editToolbar').classList.add('show');
+
+function startEdit() {
+  editing=true; snap=JSON.parse(JSON.stringify(all.weeks[vi]));
+  document.getElementById('etb').classList.add('show');
   document.getElementById('fabEdit').textContent='❌';
   render();
 }
-function cancelEdits(){
-  editMode=false; editSnap=null;
-  document.getElementById('editToolbar').classList.remove('show');
+
+function cancelEdit() {
+  editing=false; snap=null;
+  document.getElementById('etb').classList.remove('show');
   document.getElementById('fabEdit').textContent='✏️';
   render();
 }
-async function saveEdits(){
-  const btn=document.getElementById('saveEditBtn');
-  try{
+
+async function saveEdit() {
+  const tok = getToken();
+  if (!tok) { openOv('ovToken'); return; }
+  await doSave();
+}
+
+async function doSave() {
+  const btn=document.getElementById('savebtn');
+  try {
     btn.textContent='保存中…'; btn.disabled=true;
-    allData.weeks[viewIdx]=JSON.parse(JSON.stringify(editSnap));
+    all.weeks[vi] = JSON.parse(JSON.stringify(snap));
     await pushData();
-    editMode=false; editSnap=null;
-    document.getElementById('editToolbar').classList.remove('show');
+    editing=false; snap=null;
+    document.getElementById('etb').classList.remove('show');
     document.getElementById('fabEdit').textContent='✏️';
     render(); toast('已保存到 GitHub 🎉');
-  }catch(e){ toast('保存失败：'+e.message); }
-  finally{ btn.textContent='保存'; btn.disabled=false; }
+  } catch(e) {
+    if (e.message==='NO_TOKEN') { openOv('ovToken'); return; }
+    toast('保存失败：'+e.message);
+    all.weeks[vi] = snap ? JSON.parse(JSON.stringify(snap)) : all.weeks[vi];
+  } finally { btn.textContent='保存'; btn.disabled=false; }
 }
 
-// ═══ EVENT FORM ═══
-function initTypePills(){
-  const wrap=document.getElementById('typePills');
-  wrap.innerHTML=TYPES.map(t=>`<button class="type-pill" data-type="${t.v}" onclick="selectType('${t.v}')">${t.l}</button>`).join('');
-}
-function initIconRow(){
-  const row=document.getElementById('iconRow');
-  row.innerHTML=ICONS.map(ic=>`<span class="icon-opt" onclick="pickIcon('${ic}')">${ic}</span>`).join('');
+function confirmToken() {
+  const t=document.getElementById('tokenInput').value.trim();
+  if(!t){ toast('请输入 Token'); return; }
+  setToken(t);
+  closeOv('ovToken');
+  doSave();
 }
 
-function openEventForm(di,ei){
-  pendingDay=di; pendingEv=ei;
-  const ev = ei>=0 ? editSnap.days[di].events[ei] : {type:'school'};
-  document.getElementById('formTitle').textContent = ei>=0 ? '编辑活动' : '添加活动';
-  selectType(ev.type||'school', false);
-  document.getElementById('fTime').value     = ev.time     ||'';
-  document.getElementById('fTitle').value    = ev.title    ||'';
-  document.getElementById('fSubtitle').value = ev.subtitle ||'';
-  document.getElementById('fIcon').value     = ev.icon     ||'';
-  document.getElementById('fItems').value    = (ev.items||[]).join('\n');
-  openOverlay('eventFormOverlay');
+// ═══ 事件表单 ═══
+function initUI() {
+  // 类型 pills
+  document.getElementById('tpills').innerHTML =
+    TYPES.map(t=>`<button class="tp" data-t="${t.v}" onclick="selType('${t.v}')">${t.l}</button>`).join('');
+  // 图标行
+  document.getElementById('icrow').innerHTML =
+    ICONS.map(ic=>`<span class="icopt" onclick="pickIc('${ic}')">${ic}</span>`).join('');
 }
 
-function selectType(type, fillDefaults=true){
-  document.querySelectorAll('.type-pill').forEach(p=>p.classList.toggle('active',p.dataset.type===type));
-  document.getElementById('fType').value=type;
+function openForm(di,ei) {
+  pDay=di; pEv=ei;
+  document.getElementById('formTitle').textContent = ei>=0?'编辑活动':'添加活动';
+  const ev = ei>=0 ? snap.days[di].events[ei] : {type:'school'};
+  selType(ev.type||'school', false);
+  document.getElementById('fTime').value  = ev.time||'';
+  document.getElementById('fTitle').value = ev.title||'';
+  document.getElementById('fSub').value   = ev.subtitle||'';
+  document.getElementById('fIcon').value  = ev.icon||'';
+  document.getElementById('fItems').value = (ev.items||[]).join('\n');
+  openOv('ovForm');
+}
+
+function selType(t, fillDef=true) {
+  document.querySelectorAll('.tp').forEach(p=>p.classList.toggle('on',p.dataset.t===t));
+  document.getElementById('fType').value=t;
   const noTime=['daily_tasks','holiday','free'];
   const hasSub=['class','holiday','travel','cancelled'];
   const noIcon=['daily_tasks','free'];
-  document.getElementById('fieldItems').style.display    = type==='daily_tasks' ?'block':'none';
-  document.getElementById('fieldTime').style.display     = noTime.includes(type)?'none':'block';
-  document.getElementById('fieldTitle').style.display    = type==='daily_tasks' ?'none':'block';
-  document.getElementById('fieldSubtitle').style.display = hasSub.includes(type)?'block':'none';
-  document.getElementById('fieldIcon').style.display     = noIcon.includes(type)?'none':'block';
-  if(fillDefaults){
-    const defaults={school:{title:'学校放学',icon:'🏫'},class:{icon:'🎵'},holiday:{},travel:{icon:'🚄'},free:{},cancelled:{icon:'🎨'}};
-    const d=defaults[type]||{};
-    if(d.title)document.getElementById('fTitle').value=d.title;
-    if(d.icon) document.getElementById('fIcon').value=d.icon;
+  document.getElementById('fldItems').style.display = t==='daily_tasks'?'block':'none';
+  document.getElementById('fldTime').style.display  = noTime.includes(t)?'none':'block';
+  document.getElementById('fldTitle').style.display = t==='daily_tasks'?'none':'block';
+  document.getElementById('fldSub').style.display   = hasSub.includes(t)?'block':'none';
+  document.getElementById('fldIcon').style.display  = noIcon.includes(t)?'none':'block';
+  if(fillDef){
+    const defs={school:{title:'学校放学',icon:'🏫'},class:{icon:'🎵'},holiday:{},travel:{icon:'🚄'},free:{title:'自由安排'},cancelled:{icon:'🎨'}};
+    const d=defs[t]||{};
+    if(d.title) document.getElementById('fTitle').value=d.title;
+    if(d.icon)  document.getElementById('fIcon').value=d.icon;
   }
 }
 
-function pickIcon(ic){
+function pickIc(ic) {
   document.getElementById('fIcon').value=ic;
-  document.querySelectorAll('.icon-opt').forEach(el=>el.classList.toggle('selected',el.textContent===ic));
+  document.querySelectorAll('.icopt').forEach(e=>e.classList.toggle('sel',e.textContent===ic));
 }
 
-function saveEventForm(){
+function saveForm() {
   const type=document.getElementById('fType').value;
   const ev={type};
   if(type==='daily_tasks'){
@@ -473,101 +481,60 @@ function saveEventForm(){
   } else {
     const t=document.getElementById('fTime').value.trim();
     const ti=document.getElementById('fTitle').value.trim();
-    const su=document.getElementById('fSubtitle').value.trim();
+    const su=document.getElementById('fSub').value.trim();
     const ic=document.getElementById('fIcon').value.trim();
-    if(t)  ev.time=t;
-    if(ti) ev.title=ti;
-    if(su) ev.subtitle=su;
-    if(ic) ev.icon=ic;
+    if(t) ev.time=t; if(ti) ev.title=ti; if(su) ev.subtitle=su; if(ic) ev.icon=ic;
   }
-  if(!editSnap.days[pendingDay]) editSnap.days[pendingDay]={events:[]};
-  if(pendingEv>=0) editSnap.days[pendingDay].events[pendingEv]=ev;
-  else             editSnap.days[pendingDay].events.push(ev);
-  closeOverlay('eventFormOverlay');
-  render();
+  if(!snap.days[pDay]) snap.days[pDay]={events:[]};
+  if(pEv>=0) snap.days[pDay].events[pEv]=ev;
+  else       snap.days[pDay].events.push(ev);
+  closeOv('ovForm'); render();
 }
 
-function deleteEvent(di,ei){
-  editSnap.days[di].events.splice(ei,1);
-  render(); toast('已删除');
-}
+function delEv(di,ei) { snap.days[di].events.splice(ei,1); render(); toast('已删除'); }
 
-// ═══ HISTORY ═══
-function openHistory(){ renderHistory(); openOverlay('historyOverlay'); }
+// ═══ 历史 ═══
+function openHist() { renderHist(); openOv('ovHist'); }
 
-function renderHistory(){
-  const list=document.getElementById('historyList');
-  list.innerHTML='';
-  allData.weeks.slice().reverse().forEach((wk,ri)=>{
-    const idx=allData.weeks.length-1-ri;
-    const dates=weekDates(wk.weekStart);
+function renderHist() {
+  const list=document.getElementById('histList'); list.innerHTML='';
+  all.weeks.slice().reverse().forEach((wk,ri) => {
+    const idx=all.weeks.length-1-ri;
     const item=document.createElement('div');
-    item.className='history-item'+(idx===viewIdx?' active':'');
-    item.innerHTML=`<div><div class="history-range">${fmtRange(dates)}</div>${idx===viewIdx?'<div class="history-cur">📍 当前查看</div>':''}</div><button class="history-del" onclick="delWeek(event,${idx})">🗑️</button>`;
-    item.onclick=e=>{ if(e.target.classList.contains('history-del'))return; viewIdx=idx; closeOverlay('historyOverlay'); render(); };
+    item.className='hist-item'+(idx===vi?' cur':'');
+    const dates=weekDates(wk.weekStart);
+    item.innerHTML=`<div><div class="hist-range">${fmtRange(dates)}</div>${idx===vi?'<div class="hist-tag">📍 当前查看</div>':''}</div><button class="hist-del" onclick="delWeek(event,${idx})">🗑️</button>`;
+    item.onclick=e=>{ if(e.target.classList.contains('hist-del'))return; vi=idx; closeOv('ovHist'); render(); };
     list.appendChild(item);
   });
 }
 
-function addNewWeek(){
-  const last=allData.weeks[allData.weeks.length-1];
+function addWeek() {
+  const last=all.weeks[all.weeks.length-1];
   const d=new Date(last.weekStart+'T00:00:00'); d.setDate(d.getDate()+7);
-  const newWeek=JSON.parse(JSON.stringify(last));
-  newWeek.weekStart=d.toISOString().slice(0,10);
-  newWeek.days.forEach(day=>{ day.events=day.events.filter(ev=>!['holiday','travel'].includes(ev.type)); });
-  allData.weeks.push(newWeek);
-  viewIdx=allData.weeks.length-1;
-  closeOverlay('historyOverlay');
-  render(); toast('已创建下周，进入编辑模式修改后保存 💾');
-  enterEdit();
+  const nw=JSON.parse(JSON.stringify(last));
+  nw.weekStart=d.toISOString().slice(0,10);
+  nw.days.forEach(day=>{ day.events=day.events.filter(ev=>!['holiday','travel'].includes(ev.type)); });
+  all.weeks.push(nw); vi=all.weeks.length-1;
+  closeOv('ovHist'); render(); toast('已创建下周，请在编辑模式中修改');
+  startEdit();
 }
 
-function delWeek(e,idx){
+function delWeek(e,idx) {
   e.stopPropagation();
-  if(allData.weeks.length<=1){ toast('至少保留一周的日程'); return; }
-  allData.weeks.splice(idx,1);
-  if(viewIdx>=allData.weeks.length) viewIdx=allData.weeks.length-1;
-  renderHistory(); render();
+  if(all.weeks.length<=1){ toast('至少保留一周的日程'); return; }
+  all.weeks.splice(idx,1);
+  if(vi>=all.weeks.length) vi=all.weeks.length-1;
+  renderHist(); render();
 }
 
-// ═══ SETTINGS ═══
-function showSetup(){
-  const c=getCfg();
-  document.getElementById('cfgOwner').value=c.owner;
-  document.getElementById('cfgRepo').value=c.repo;
-  document.getElementById('cfgToken').value=c.token;
-  updateLinkPreview();
-  openOverlay('setupOverlay');
-}
-function updateLinkPreview(){
-  const o=document.getElementById('cfgOwner').value.trim();
-  const r=document.getElementById('cfgRepo').value.trim()||'baobei-schedule';
-  document.getElementById('shareLink').value=o?`https://${o}.github.io/${r}/`:'';
-}
-function saveConfig(){
-  const o=document.getElementById('cfgOwner').value.trim();
-  const r=document.getElementById('cfgRepo').value.trim()||'baobei-schedule';
-  const t=document.getElementById('cfgToken').value.trim();
-  if(!o||!t){ toast('用户名和 Token 不能为空'); return; }
-  localStorage.setItem('gh_owner',o); localStorage.setItem('gh_repo',r); localStorage.setItem('gh_token',t);
-  closeOverlay('setupOverlay'); toast('保存成功，正在加载…'); init();
-}
-function copyShareLink(){
-  const v=document.getElementById('shareLink').value;
-  if(!v){ toast('请先填写用户名'); return; }
-  navigator.clipboard?.writeText(v).then(()=>toast('链接已复制 🔗')).catch(()=>toast('请手动复制'));
-}
-function shareApp(){
-  const c=getCfg(); if(!c.owner){ toast('请先完成设置 ⚙️'); return; }
-  navigator.clipboard?.writeText(pagesUrl(c)).then(()=>toast('分享链接已复制，发给家人吧 🔗')).catch(()=>toast('请手动复制地址栏'));
-}
-
-// ═══ AI PROMPT ═══
-function openPrompt(){
-  const wk=allData.weeks[viewIdx];
+// ═══ AI 提示词 ═══
+function openAI() {
+  if(!all.weeks.length){ toast('日程加载中，请稍后'); return; }
+  const wk=all.weeks[vi];
   const d=new Date(wk.weekStart+'T00:00:00'); d.setDate(d.getDate()+7);
   const ns=d.toISOString().slice(0,10);
-  document.getElementById('promptBox').textContent=
+  document.getElementById('pbox').textContent=
 `请帮我生成从 ${ns} 开始的下一周学习周历 JSON。
 
 参考当前周：
@@ -590,40 +557,50 @@ ${JSON.stringify(wk,null,2)}
     // 共7个元素，周一到周日
   ]
 }`;
-  openOverlay('promptOverlay');
+  openOv('ovAI');
 }
-function copyPrompt(){
-  navigator.clipboard?.writeText(document.getElementById('promptBox').textContent)
-    .then(()=>toast('已复制，发给 AI 吧 📋')).catch(()=>toast('请手动复制'));
+function copyAI() {
+  navigator.clipboard?.writeText(document.getElementById('pbox').textContent)
+    .then(()=>toast('已复制，发给 Claude 吧 📋')).catch(()=>toast('请手动长按复制'));
 }
 
-// ═══ OVERLAYS ═══
-function openOverlay(id){ document.getElementById(id).classList.add('open'); }
-function closeOverlay(id){ document.getElementById(id).classList.remove('open'); }
-function bgClose(e,id){ if(e.target===document.getElementById(id)) closeOverlay(id); }
+// ═══ JSON 导入 ═══
+function importJson() {
+  try {
+    const d=JSON.parse(document.getElementById('jsonInput').value);
+    if(!d.weekStart||!d.days) throw new Error('格式不对');
+    if(!editing) startEdit();
+    snap=d; all.weeks[vi]=JSON.parse(JSON.stringify(d));
+    closeOv('ovJson'); render(); toast('导入成功，记得点保存 💾');
+  } catch(e){ toast('JSON 格式有误：'+e.message); }
+}
 
-// ═══ TOAST ═══
+// ═══ 分享 ═══
+function share() {
+  navigator.clipboard?.writeText(PAGES_URL)
+    .then(()=>toast('链接已复制，发到微信群吧 🔗'))
+    .catch(()=>toast('链接：'+PAGES_URL));
+}
+
+// ═══ Overlay 工具 ═══
+function openOv(id){ document.getElementById(id).classList.add('open'); }
+function closeOv(id){ document.getElementById(id).classList.remove('open'); }
+function bgc(e,id){ if(e.target===document.getElementById(id)) closeOv(id); }
+
+// ═══ Toast ═══
 function toast(msg){
   const el=document.getElementById('toast');
   el.textContent=msg; el.classList.add('show');
   setTimeout(()=>el.classList.remove('show'),2800);
 }
 
-// ═══ INIT ═══
-async function init(){
-  const c=getCfg();
-  document.getElementById('loading').classList.remove('hidden');
-  if(!c.owner||!c.token){
-    document.getElementById('loading').classList.add('hidden');
-    showSetup(); return;
-  }
-  try{ await loadData(); }
-  catch(e){ toast('加载失败，请检查设置'); showSetup(); }
-  finally{ document.getElementById('loading').classList.add('hidden'); }
+// ═══ 初始化 ═══
+async function init() {
+  initUI();
+  try { await loadData(); }
+  catch(e){ toast('网络加载失败，请刷新重试'); }
+  finally{ document.getElementById('loading').classList.add('gone'); }
 }
-
-initTypePills();
-initIconRow();
 init();
 </script>
 </body>
