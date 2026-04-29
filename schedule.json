@@ -21,7 +21,8 @@
         ]},
         { "events": [
             { "type": "daily_tasks", "items": ["英语托托", "数学题打卡", "默写高手"] },
-            { "type": "school",    "time": "15:30", "title": "学校放学", "icon": "🏫" },
+            { "type": "school",    "time": "12:00", "title": "学校放学", "icon": "🏫" },
+            { "type": "class",     "time": "12:30", "title": "和赵浩宇午饭", "subtitle": "一起吃饭 🍜", "icon": "🍕" },
             { "type": "cancelled", "time": "15:40", "title": "画画课", "subtitle": "本周停课", "icon": "🎨" }
         ]},
         { "events": [
