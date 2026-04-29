@@ -8,8 +8,6 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB',sans-serif;background:#FFF5FB;min-height:100vh}
 body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,#FFB6D9 1.2px,transparent 1.2px);background-size:28px 28px;opacity:.15;pointer-events:none;z-index:0}
-
-/* ── Header ── */
 .header{background:linear-gradient(135deg,#FFB6D9 0%,#CDB4F8 55%,#A8D8FF 100%);padding:14px 16px 16px;position:relative;overflow:hidden;z-index:1}
 .hdeco{position:absolute;top:8px;right:14px;font-size:18px;opacity:.4;letter-spacing:4px;pointer-events:none}
 .hrow{display:flex;align-items:center;justify-content:space-between;gap:8px}
@@ -20,8 +18,6 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .nbtn{background:none;border:none;color:#fff;font-size:18px;cursor:pointer;padding:0 2px;line-height:1;font-weight:700}
 .nbtn:disabled{opacity:.25;cursor:default}
 .hdate{font-size:12px;font-weight:700;color:#fff;white-space:nowrap;min-width:90px;text-align:center}
-
-/* ── Edit toolbar ── */
 .etoolbar{display:none;position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#FF9FCE,#C9B8FF);padding:10px 16px;align-items:center;justify-content:space-between}
 .etoolbar.show{display:flex}
 .elabel{color:#fff;font-size:14px;font-weight:700}
@@ -29,8 +25,6 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .tbtn{padding:7px 16px;border-radius:20px;border:none;font-size:13px;font-weight:700;cursor:pointer}
 .tbtn-c{background:rgba(255,255,255,.28);color:#fff}
 .tbtn-s{background:#fff;color:#C084FC}
-
-/* ── Calendar ── */
 .cwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:12px 10px 110px;position:relative;z-index:1}
 .cal{display:grid;grid-template-columns:repeat(7,minmax(118px,1fr));gap:8px;min-width:830px}
 .dcol{display:flex;flex-direction:column;gap:7px}
@@ -41,8 +35,6 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .dname.w{color:#FF6B8A}
 .dhdr.today .dname,.dhdr.today .ddate{color:#fff}
 .ddate{font-size:11px;color:#bbb;margin-top:2px}
-
-/* ── Cards ── */
 .card{border-radius:13px;padding:9px 11px;font-size:13px;position:relative}
 .c-daily{background:#FFFBEA;border:2px dashed #FBBF24}
 .dlbl{font-size:11px;font-weight:800;color:#F59E0B;margin-bottom:5px}
@@ -51,7 +43,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .c-class{background:linear-gradient(135deg,#F472B6,#C084FC);color:#fff}
 .c-holiday{background:linear-gradient(135deg,#FF8FAB,#FF6B8A);color:#fff;min-height:50px}
 .c-travel{background:linear-gradient(135deg,#60C8F5,#38B6FF);color:#fff}
-.c-free{background:#fff;border:1.5px solid #F9C8E0;color:#999}
+.c-free{background:#fff;border:1.5px solid #F9C8E0;color:#888}
 .c-cancelled{background:#F5F5F5;border:1.5px dashed #DDD;color:#C0C0C0}
 .cbadge{display:inline-block;background:#E8E8E8;color:#C0C0C0;font-size:10px;border-radius:8px;padding:1px 6px;margin-top:3px}
 .ctime{font-size:11px;font-weight:700;opacity:.88;margin-bottom:3px}
@@ -59,13 +51,9 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .cicon{font-size:15px;flex-shrink:0}
 .ctitle{font-weight:700;font-size:13px;line-height:1.3}
 .csub{font-size:11px;opacity:.85;margin-top:2px}
-
-/* ── Edit overlays ── */
 .cebar{position:absolute;top:4px;right:4px;display:flex;gap:3px}
 .cebtn{width:22px;height:22px;border-radius:50%;border:none;cursor:pointer;font-size:10px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.2);color:#fff}
 .addbtn{background:#fff;border:1.5px dashed #FFB6D9;color:#FF9FCE;border-radius:13px;padding:7px;font-size:12px;font-weight:700;cursor:pointer;width:100%;margin-top:2px}
-
-/* ── FABs ── */
 .fabs{position:fixed;bottom:22px;right:14px;display:flex;flex-direction:column;gap:9px;z-index:50}
 .fab{width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.18);transition:transform .15s}
 .fab:active{transform:scale(.9)}
@@ -73,8 +61,6 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .f-ai{background:linear-gradient(135deg,#FAAD14,#FFC53D)}
 .f-hist{background:linear-gradient(135deg,#A8D8FF,#60C8F5)}
 .f-edit{background:linear-gradient(135deg,#FFB6D9,#C9B8FF)}
-
-/* ── Overlays ── */
 .ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.38);z-index:100;align-items:flex-end}
 .ov.open{display:flex}
 .sheet{background:#fff;border-radius:22px 22px 0 0;padding:12px 16px 30px;width:100%;max-height:88vh;overflow-y:auto}
@@ -86,14 +72,10 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .sb-c{background:#F5F5F5;color:#999}
 .sb-p{background:linear-gradient(135deg,#FFB6D9,#C9B8FF);color:#fff}
 .sb-y{background:linear-gradient(135deg,#FAAD14,#FFC53D);color:#fff}
-
-/* ── Form fields ── */
 .flbl{font-size:12px;font-weight:700;color:#888;margin-bottom:4px;margin-top:8px}
 input,textarea{width:100%;border:2px solid #F3D0E8;border-radius:11px;padding:9px 12px;font-size:14px;outline:none;color:#555;font-family:inherit}
 input:focus,textarea:focus{border-color:#C9B8FF}
 textarea{height:110px;font-size:13px;line-height:1.6;resize:vertical;display:block}
-
-/* ── Type pills ── */
 .tpills{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:4px;-webkit-overflow-scrolling:touch}
 .tp{flex-shrink:0;padding:6px 12px;border-radius:20px;border:2px solid #EEE;font-size:12px;font-weight:700;cursor:pointer;color:#888;background:#fff}
 .tp.on{border-color:transparent;color:#fff}
@@ -104,42 +86,23 @@ textarea{height:110px;font-size:13px;line-height:1.6;resize:vertical;display:blo
 .tp[data-t=travel].on{background:#38B6FF}
 .tp[data-t=free].on{background:#AAA}
 .tp[data-t=cancelled].on{background:#BBB}
-
-/* ── Icon picker ── */
 .icrow{display:flex;gap:6px;overflow-x:auto;padding:4px 0 6px;-webkit-overflow-scrolling:touch}
 .icopt{font-size:22px;cursor:pointer;padding:3px;border-radius:8px;flex-shrink:0}
 .icopt.sel,.icopt:hover{background:#F3D0E8}
-
-/* ── History ── */
 .hist-item{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-radius:13px;background:#FFF5FB;border:1.5px solid #F3D0E8;margin-bottom:7px;cursor:pointer}
 .hist-item.cur{background:linear-gradient(135deg,#FFE9F3,#EDE9FF);border-color:#C9B8FF}
 .hist-range{font-size:14px;font-weight:700;color:#555}
 .hist-tag{font-size:11px;color:#C084FC;font-weight:700;margin-top:2px}
 .hist-del{background:none;border:none;font-size:16px;cursor:pointer;padding:4px 6px;border-radius:8px;flex-shrink:0}
 .hist-add{width:100%;padding:11px;border-radius:13px;border:2px dashed #FFB6D9;background:#fff;color:#FF9FCE;font-size:13px;font-weight:700;cursor:pointer;margin-top:2px}
-
-/* ── Prompt ── */
 .pbox{background:#F9F0FF;border:1.5px solid #E0D0FF;border-radius:12px;padding:12px;font-size:11px;color:#555;line-height:1.7;white-space:pre-wrap;word-break:break-word;max-height:260px;overflow-y:auto}
-
-/* ── Token sheet ── */
 .token-hint{background:#FFF8E1;border:1.5px solid #FFE082;border-radius:11px;padding:11px;font-size:12px;color:#888;line-height:1.6;margin-bottom:10px}
-
-/* ── Loading ── */
-.loading{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#FFF5FB;z-index:200;font-size:14px;color:#C9B8FF;gap:10px}
-.loading.gone{display:none}
-.spin{font-size:34px;animation:sp 1.5s linear infinite}
-@keyframes sp{to{transform:rotate(360deg)}}
-
-/* ── Toast ── */
 .toast{position:fixed;bottom:86px;left:50%;transform:translateX(-50%);background:rgba(40,40,40,.82);color:#fff;padding:9px 20px;border-radius:20px;font-size:13px;display:none;z-index:300;white-space:nowrap;max-width:90vw;text-align:center}
 .toast.show{display:block}
 </style>
 </head>
 <body>
 
-<div class="loading" id="loading"><span class="spin">🌸</span><span>加载中…</span></div>
-
-<!-- Header -->
 <div class="header">
   <div class="hdeco">⭐🌈🎀✨🌸</div>
   <div class="hrow">
@@ -152,7 +115,6 @@ textarea{height:110px;font-size:13px;line-height:1.6;resize:vertical;display:blo
   </div>
 </div>
 
-<!-- Edit toolbar -->
 <div class="etoolbar" id="etb">
   <span class="elabel">✏️ 编辑模式</span>
   <div class="tbtns">
@@ -161,10 +123,8 @@ textarea{height:110px;font-size:13px;line-height:1.6;resize:vertical;display:blo
   </div>
 </div>
 
-<!-- Calendar -->
 <div class="cwrap"><div class="cal" id="cal"></div></div>
 
-<!-- FABs -->
 <div class="fabs">
   <button class="fab f-share" onclick="share()"      title="分享">🔗</button>
   <button class="fab f-ai"    onclick="openAI()"     title="AI提示词">🤖</button>
@@ -201,12 +161,12 @@ textarea{height:110px;font-size:13px;line-height:1.6;resize:vertical;display:blo
   </div>
 </div>
 
-<!-- Token 输入 -->
+<!-- Token -->
 <div class="ov" id="ovToken" onclick="bgc(event,'ovToken')">
   <div class="sheet">
     <div class="shdl"></div>
     <div class="shtitle">🔑 编辑验证</div>
-    <div class="token-hint">编辑日程需要 GitHub Token 验证身份，输入一次后自动记住，以后直接编辑无需再次输入。</div>
+    <div class="token-hint">编辑日程需要 GitHub Token，输入一次后自动记住。</div>
     <div class="flbl">Personal Access Token</div>
     <input id="tokenInput" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"/>
     <div class="sbtns">
@@ -221,7 +181,7 @@ textarea{height:110px;font-size:13px;line-height:1.6;resize:vertical;display:blo
   <div class="sheet">
     <div class="shdl"></div>
     <div class="shtitle">🤖 AI 生成提示词</div>
-    <div class="shhint">复制提示词 → 发给 Claude → 得到 JSON → 用编辑模式的「导入JSON」功能粘贴</div>
+    <div class="shhint">复制后发给 Claude，得到 JSON 后告诉 Claude 更新日程。</div>
     <div class="pbox" id="pbox"></div>
     <div class="sbtns">
       <button class="sbtn sb-c" onclick="closeOv('ovAI')">关闭</button>
@@ -230,378 +190,232 @@ textarea{height:110px;font-size:13px;line-height:1.6;resize:vertical;display:blo
   </div>
 </div>
 
-<!-- JSON 导入（在编辑模式下用） -->
-<div class="ov" id="ovJson" onclick="bgc(event,'ovJson')">
-  <div class="sheet">
-    <div class="shdl"></div>
-    <div class="shtitle">📋 导入 AI 生成的 JSON</div>
-    <div class="shhint">把 AI 回复的 JSON 粘贴到这里，点确认自动更新日程</div>
-    <textarea id="jsonInput" placeholder='{"title":"宝贝的学习周历","weekStart":"2026-05-11","days":[...]}' style="height:200px;font-family:monospace;font-size:11px;"></textarea>
-    <div class="sbtns">
-      <button class="sbtn sb-c" onclick="closeOv('ovJson')">取消</button>
-      <button class="sbtn sb-p" onclick="importJson()">导入 ✨</button>
-    </div>
-  </div>
-</div>
-
 <div class="toast" id="toast"></div>
 
 <script>
-// ═══ 配置（已预设，无需修改）═══
+// ═══ 配置 ═══
 const OWNER     = 'Dongran213';
 const REPO      = 'baobei-schedule';
 const PAGES_URL = `https://${OWNER}.github.io/${REPO}/`;
-const RAW_URL   = () => `https://raw.githubusercontent.com/${OWNER}/${REPO}/main/schedule.json?t=${Date.now()}`;
-const API_URL   = `https://api.github.com/repos/${OWNER}/${REPO}/contents/schedule.json`;
+const API       = `https://api.github.com/repos/${OWNER}/${REPO}/contents`;
 
 const DAYS  = ['周一','周二','周三','周四','周五','周六','周日'];
-const ICONS = ['🏫','🎵','🎨','📚','⚽','🏊','🎮','🚄','✈️','🎉','🎡','🌸','🍕','🎂','🎠','🏖️','🌈','⭐'];
+const ICONS = ['🏫','🎵','🎨','📚','⚽','🏊','🎮','🚄','✈️','🎉','🎡','🌸','🍕','🍜','🎂','🏖️','🌈','⭐'];
 const TYPES = [
   {v:'daily_tasks',l:'每日必做'},{v:'school',l:'放学'},{v:'class',l:'课外班'},
   {v:'holiday',l:'假期'},{v:'travel',l:'出行'},{v:'free',l:'自由时间'},{v:'cancelled',l:'停课'}
 ];
 
+// ═══ 日程数据（直接嵌入，微信可直接打开）═══
+const SCHEDULE_DATA = /* @DATA@ */ {"weeks":[{"title":"宝贝的学习周历","weekStart":"2026-04-27","days":[{"events":[{"type":"daily_tasks","items":["英语托托","数学题打卡","默写高手"]},{"type":"school","time":"15:20","title":"学校放学","icon":"🏫"},{"type":"class","time":"17:00","title":"音乐课","subtitle":"猫头鹰","icon":"🎵"}]},{"events":[{"type":"daily_tasks","items":["英语托托","数学题打卡","默写高手"]},{"type":"school","time":"16:20","title":"学校放学","icon":"🏫"},{"type":"free","title":"自由安排 / 查漏补缺"}]},{"events":[{"type":"daily_tasks","items":["英语托托","数学题打卡","默写高手"]},{"type":"school","time":"16:20","title":"学校放学","icon":"🏫"},{"type":"free","title":"自由安排 / 查漏补缺"}]},{"events":[{"type":"daily_tasks","items":["英语托托","数学题打卡","默写高手"]},{"type":"school","time":"12:00","title":"学校放学","icon":"🏫"},{"type":"class","time":"12:30","title":"和赵浩宇午饭","subtitle":"一起吃饭 🍜","icon":"🍕"},{"type":"cancelled","time":"15:40","title":"画画课","subtitle":"本周停课","icon":"🎨"}]},{"events":[{"type":"holiday","title":"🎉 劳动节假期","subtitle":"出发前往济宁"},{"type":"travel","time":"16:39","title":"北京南站","subtitle":"高铁 → 济宁","icon":"🚄"}]},{"events":[{"type":"holiday","title":"🎉 劳动节假期","subtitle":"在济宁"},{"type":"free","title":"假期游玩，好好放松 🎡"}]},{"events":[{"type":"holiday","title":"🎉 劳动节假期","subtitle":"在济宁"},{"type":"free","title":"假期游玩，好好放松 🎡"}]}]},{"title":"宝贝的学习周历","weekStart":"2026-05-04","days":[{"events":[{"type":"holiday","title":"🎉 劳动节假期","subtitle":"在济宁"},{"type":"free","title":"假期游玩，好好放松 🎡"}]},{"events":[{"type":"holiday","title":"🎉 劳动节假期（最后一天）","subtitle":"在济宁"},{"type":"class","time":"","title":"英语课","subtitle":"2小时","icon":"📚"},{"type":"free","title":"⚠️ 截止今日：完成学校劳动节作业"},{"type":"travel","time":"13:10","title":"济宁北出发","subtitle":"高铁返程 → 北京","icon":"🚄"}]},{"events":[{"type":"daily_tasks","items":["英语托托","数学题打卡","默写高手"]},{"type":"school","time":"16:20","title":"学校放学","icon":"🏫"},{"type":"free","title":"自由安排 / 查漏补缺"}]},{"events":[{"type":"daily_tasks","items":["英语托托","数学题打卡","默写高手"]},{"type":"school","time":"15:30","title":"学校放学","icon":"🏫"},{"type":"class","time":"15:40","title":"画画课","subtitle":"猫头鹰","icon":"🎨"}]},{"events":[{"type":"daily_tasks","items":["英语托托","数学题打卡","默写高手"]},{"type":"school","time":"16:20","title":"学校放学","icon":"🏫"},{"type":"class","time":"18:10","title":"高思数学","subtitle":"18:10-20:10 · 瑞辰国际中心1层","icon":"📐"},{"type":"free","title":"自由安排 / 查漏补缺"}]},{"events":[{"type":"school","time":"08:30","title":"补课（补周二）","subtitle":"正常上课时间","icon":"🏫"}]},{"events":[{"type":"free","title":"周末休息 🌸"}]}]}]} /* @DATA@ */;
+
 // ═══ 状态 ═══
-let all      = { weeks:[] };
-let vi       = 0;        // 当前查看的周索引
-let editing  = false;
-let snap     = null;     // 编辑时的临时数据
-let pDay     = 0;
-let pEv      = -1;
+let all=null, vi=0, editing=false, snap=null, pDay=0, pEv=-1;
+const getToken=()=>localStorage.getItem('gh_token')||'';
+const setToken=t=>localStorage.setItem('gh_token',t);
 
-// ═══ Token ═══
-const getToken = () => localStorage.getItem('gh_token') || '';
-const setToken = t => localStorage.setItem('gh_token', t);
-
-// ═══ 数据加载（不需要 token，仓库是公开的）═══
-async function loadData() {
-  const res = await fetch(RAW_URL());
-  if (!res.ok) throw new Error('加载失败 ' + res.status);
-  const d = await res.json();
-  all = d.weeks ? d : { weeks: [d] };
-  all.weeks.sort((a,b) => a.weekStart.localeCompare(b.weekStart));
-  vi = findCurWeek();
-  render();
-}
-
-function findCurWeek() {
-  const today = new Date(); today.setHours(0,0,0,0);
-  for (let i = 0; i < all.weeks.length; i++) {
-    const ws = new Date(all.weeks[i].weekStart + 'T00:00:00');
-    const we = new Date(ws); we.setDate(we.getDate() + 6);
-    if (today >= ws && today <= we) return i;
-  }
-  return all.weeks.length - 1; // 没找到则显示最新一周
-}
-
-// ═══ 保存到 GitHub（需要 token）═══
-async function pushData() {
-  const tok = getToken();
-  if (!tok) throw new Error('NO_TOKEN');
-  const hdr = {'Authorization':`token ${tok}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'};
-  const cur = await fetch(API_URL, {headers:hdr}).then(r=>r.json());
-  if (!cur.sha) throw new Error('获取文件信息失败');
-  const res = await fetch(API_URL, {
-    method:'PUT', headers:hdr,
-    body: JSON.stringify({
-      message: `更新宝贝的学习周历 ${new Date().toLocaleDateString('zh-CN')}`,
-      content: btoa(unescape(encodeURIComponent(JSON.stringify(all,null,2)))),
-      sha: cur.sha
-    })
-  });
-  if (!res.ok) { const e=await res.json(); throw new Error(e.message||'提交失败'); }
-}
+// ═══ 日期工具 ═══
+function weekDates(s){const b=new Date(s+'T00:00:00');return Array.from({length:7},(_,i)=>{const d=new Date(b);d.setDate(d.getDate()+i);return d;})}
+function fmtRange(dates){const s=dates[0],e=dates[6],[sm,sd,em,ed]=[s.getMonth()+1,s.getDate(),e.getMonth()+1,e.getDate()];return sm===em?`${sm}月${sd}-${ed}日`:`${sm}月${sd}日-${em}月${ed}日`}
+function isToday(d){const t=new Date();return d.getDate()===t.getDate()&&d.getMonth()===t.getMonth()&&d.getFullYear()===t.getFullYear()}
+function findCurWeek(){const today=new Date();today.setHours(0,0,0,0);for(let i=0;i<all.weeks.length;i++){const ws=new Date(all.weeks[i].weekStart+'T00:00:00'),we=new Date(ws);we.setDate(we.getDate()+6);if(today>=ws&&today<=we)return i}return all.weeks.length-1}
 
 // ═══ 渲染 ═══
-function weekDates(s) {
-  const b = new Date(s+'T00:00:00');
-  return Array.from({length:7},(_,i)=>{ const d=new Date(b); d.setDate(d.getDate()+i); return d; });
-}
-function fmtRange(dates) {
-  const s=dates[0],e=dates[6],[sm,sd,em,ed]=[s.getMonth()+1,s.getDate(),e.getMonth()+1,e.getDate()];
-  return sm===em?`${sm}月${sd}-${ed}日`:`${sm}月${sd}日-${em}月${ed}日`;
-}
-function isToday(d){ const t=new Date(); return d.getDate()===t.getDate()&&d.getMonth()===t.getMonth()&&d.getFullYear()===t.getFullYear(); }
-
-function render() {
-  const wk = editing ? snap : all.weeks[vi];
-  if (!wk) return;
-  const dates = weekDates(wk.weekStart);
-  document.getElementById('dateRange').textContent = fmtRange(dates);
-  document.getElementById('appTitle').textContent  = wk.title || '宝贝的学习周历';
-  document.getElementById('btnPrev').disabled = vi <= 0;
-  document.getElementById('btnNext').disabled = vi >= all.weeks.length - 1;
-
-  const cal = document.getElementById('cal');
-  cal.innerHTML = '';
-  dates.forEach((date,i) => {
-    const wknd = i >= 4;
-    const col  = document.createElement('div'); col.className='dcol';
-    const hdr  = document.createElement('div');
-    hdr.className = 'dhdr'+(wknd?' wknd':'')+(isToday(date)?' today':'');
-    hdr.innerHTML = `<div class="dname${wknd?' w':''}">${DAYS[i]}</div><div class="ddate">${date.getMonth()+1}/${date.getDate()}</div>`;
+function render(){
+  const wk=editing?snap:all.weeks[vi];
+  if(!wk)return;
+  const dates=weekDates(wk.weekStart);
+  document.getElementById('dateRange').textContent=fmtRange(dates);
+  document.getElementById('appTitle').textContent=wk.title||'宝贝的学习周历';
+  document.getElementById('btnPrev').disabled=vi<=0;
+  document.getElementById('btnNext').disabled=vi>=all.weeks.length-1;
+  const cal=document.getElementById('cal');cal.innerHTML='';
+  dates.forEach((date,i)=>{
+    const wknd=i>=4,col=document.createElement('div');col.className='dcol';
+    const hdr=document.createElement('div');
+    hdr.className='dhdr'+(wknd?' wknd':'')+(isToday(date)?' today':'');
+    hdr.innerHTML=`<div class="dname${wknd?' w':''}">${DAYS[i]}</div><div class="ddate">${date.getMonth()+1}/${date.getDate()}</div>`;
     col.appendChild(hdr);
-    (wk.days[i]?.events||[]).forEach((ev,ei) => col.appendChild(mkCard(ev,i,ei)));
-    if (editing) {
-      const ab=document.createElement('button'); ab.className='addbtn';
-      ab.textContent='＋ 添加活动'; ab.onclick=()=>openForm(i,-1);
-      col.appendChild(ab);
-    }
+    (wk.days[i]?.events||[]).forEach((ev,ei)=>col.appendChild(mkCard(ev,i,ei)));
+    if(editing){const ab=document.createElement('button');ab.className='addbtn';ab.textContent='＋ 添加活动';ab.onclick=()=>openForm(i,-1);col.appendChild(ab)}
     cal.appendChild(col);
   });
 }
 
-function mkCard(ev,di,ei) {
-  const el = document.createElement('div');
-  if (ev.type==='daily_tasks') {
+function mkCard(ev,di,ei){
+  const el=document.createElement('div');
+  if(ev.type==='daily_tasks'){
     el.className='card c-daily';
     el.innerHTML=`<div class="dlbl">✅ 每日必做</div>`+(ev.items||[]).map(x=>`<div class="ditem">• ${x}</div>`).join('');
-  } else {
+  }else{
     const c={school:'c-school',class:'c-class',holiday:'c-holiday',travel:'c-travel',free:'c-free',cancelled:'c-cancelled'}[ev.type]||'c-free';
     el.className=`card ${c}`;
     let h=ev.time?`<div class="ctime">${ev.time}</div>`:'';
     h+=`<div class="cmain">${ev.icon?`<span class="cicon">${ev.icon}</span>`:''}<span class="ctitle">${ev.title||''}</span></div>`;
-    if(ev.subtitle) h+=`<div class="csub">${ev.subtitle}</div>`;
-    if(ev.type==='cancelled') h+=`<span class="cbadge">本周停课</span>`;
+    if(ev.subtitle)h+=`<div class="csub">${ev.subtitle}</div>`;
+    if(ev.type==='cancelled')h+=`<span class="cbadge">本周停课</span>`;
     el.innerHTML=h;
   }
-  if (editing) {
-    const bar=document.createElement('div'); bar.className='cebar';
-    bar.innerHTML=`<button class="cebtn" onclick="openForm(${di},${ei})">✏️</button><button class="cebtn" onclick="delEv(${di},${ei})">🗑</button>`;
-    el.appendChild(bar);
-  }
+  if(editing){const bar=document.createElement('div');bar.className='cebar';bar.innerHTML=`<button class="cebtn" onclick="openForm(${di},${ei})">✏️</button><button class="cebtn" onclick="delEv(${di},${ei})">🗑</button>`;el.appendChild(bar)}
   return el;
 }
 
 // ═══ 周切换 ═══
-function goWeek(d) { vi=Math.max(0,Math.min(all.weeks.length-1,vi+d)); render(); }
+function goWeek(d){vi=Math.max(0,Math.min(all.weeks.length-1,vi+d));render()}
 
-// ═══ 编辑模式 ═══
-function toggleEdit() {
-  editing ? cancelEdit() : startEdit();
-}
+// ═══ 编辑 ═══
+function toggleEdit(){editing?cancelEdit():startEdit()}
+function startEdit(){editing=true;snap=JSON.parse(JSON.stringify(all.weeks[vi]));document.getElementById('etb').classList.add('show');document.getElementById('fabEdit').textContent='❌';render()}
+function cancelEdit(){editing=false;snap=null;document.getElementById('etb').classList.remove('show');document.getElementById('fabEdit').textContent='✏️';render()}
 
-function startEdit() {
-  editing=true; snap=JSON.parse(JSON.stringify(all.weeks[vi]));
-  document.getElementById('etb').classList.add('show');
-  document.getElementById('fabEdit').textContent='❌';
-  render();
-}
-
-function cancelEdit() {
-  editing=false; snap=null;
-  document.getElementById('etb').classList.remove('show');
-  document.getElementById('fabEdit').textContent='✏️';
-  render();
-}
-
-async function saveEdit() {
-  const tok = getToken();
-  if (!tok) { openOv('ovToken'); return; }
+async function saveEdit(){
+  if(!getToken()){openOv('ovToken');return}
   await doSave();
 }
 
-async function doSave() {
+async function doSave(){
   const btn=document.getElementById('savebtn');
-  try {
-    btn.textContent='保存中…'; btn.disabled=true;
-    all.weeks[vi] = JSON.parse(JSON.stringify(snap));
-    await pushData();
-    editing=false; snap=null;
+  try{
+    btn.textContent='保存中…';btn.disabled=true;
+    all.weeks[vi]=JSON.parse(JSON.stringify(snap));
+    await pushBoth();
+    editing=false;snap=null;
     document.getElementById('etb').classList.remove('show');
     document.getElementById('fabEdit').textContent='✏️';
-    render(); toast('已保存到 GitHub 🎉');
-  } catch(e) {
-    if (e.message==='NO_TOKEN') { openOv('ovToken'); return; }
+    render();toast('已保存，家人刷新链接即可看到 🎉');
+  }catch(e){
+    if(e.message==='NO_TOKEN'){openOv('ovToken');return}
     toast('保存失败：'+e.message);
-    all.weeks[vi] = snap ? JSON.parse(JSON.stringify(snap)) : all.weeks[vi];
-  } finally { btn.textContent='保存'; btn.disabled=false; }
+  }finally{btn.textContent='保存';btn.disabled=false}
 }
 
-function confirmToken() {
+async function pushBoth(){
+  const tok=getToken();if(!tok)throw new Error('NO_TOKEN');
+  const hdr={'Authorization':`token ${tok}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'};
+
+  // 更新 schedule.json
+  const jApi=`${API}/schedule.json`;
+  const jInfo=await fetch(jApi,{headers:hdr}).then(r=>r.json());
+  await fetch(jApi,{method:'PUT',headers:hdr,body:JSON.stringify({
+    message:`更新宝贝的学习周历 ${new Date().toLocaleDateString('zh-CN')}`,
+    content:btoa(unescape(encodeURIComponent(JSON.stringify(all,null,2)))),
+    sha:jInfo.sha
+  })});
+
+  // 更新 index.html（替换嵌入数据）
+  const hApi=`${API}/index.html`;
+  const hInfo=await fetch(hApi,{headers:hdr}).then(r=>r.json());
+  const curHtml=decodeURIComponent(escape(atob(hInfo.content.replace(/\n/g,''))));
+  const newHtml=curHtml.replace(/\/\* @DATA@ \*\/[\s\S]*?\/\* @DATA@ \*\//,`/* @DATA@ */ ${JSON.stringify(all)} /* @DATA@ */`);
+  const res=await fetch(hApi,{method:'PUT',headers:hdr,body:JSON.stringify({
+    message:`更新宝贝的学习周历 ${new Date().toLocaleDateString('zh-CN')}`,
+    content:btoa(unescape(encodeURIComponent(newHtml))),
+    sha:hInfo.sha
+  })});
+  if(!res.ok){const e=await res.json();throw new Error(e.message||'提交失败')}
+}
+
+function confirmToken(){
   const t=document.getElementById('tokenInput').value.trim();
-  if(!t){ toast('请输入 Token'); return; }
-  setToken(t);
-  closeOv('ovToken');
-  doSave();
+  if(!t){toast('请输入 Token');return}
+  setToken(t);closeOv('ovToken');doSave();
 }
 
 // ═══ 事件表单 ═══
-function initUI() {
-  // 类型 pills
-  document.getElementById('tpills').innerHTML =
-    TYPES.map(t=>`<button class="tp" data-t="${t.v}" onclick="selType('${t.v}')">${t.l}</button>`).join('');
-  // 图标行
-  document.getElementById('icrow').innerHTML =
-    ICONS.map(ic=>`<span class="icopt" onclick="pickIc('${ic}')">${ic}</span>`).join('');
+function initUI(){
+  document.getElementById('tpills').innerHTML=TYPES.map(t=>`<button class="tp" data-t="${t.v}" onclick="selType('${t.v}')">${t.l}</button>`).join('');
+  document.getElementById('icrow').innerHTML=ICONS.map(ic=>`<span class="icopt" onclick="pickIc('${ic}')">${ic}</span>`).join('');
 }
 
-function openForm(di,ei) {
-  pDay=di; pEv=ei;
-  document.getElementById('formTitle').textContent = ei>=0?'编辑活动':'添加活动';
-  const ev = ei>=0 ? snap.days[di].events[ei] : {type:'school'};
-  selType(ev.type||'school', false);
-  document.getElementById('fTime').value  = ev.time||'';
-  document.getElementById('fTitle').value = ev.title||'';
-  document.getElementById('fSub').value   = ev.subtitle||'';
-  document.getElementById('fIcon').value  = ev.icon||'';
-  document.getElementById('fItems').value = (ev.items||[]).join('\n');
+function openForm(di,ei){
+  pDay=di;pEv=ei;
+  document.getElementById('formTitle').textContent=ei>=0?'编辑活动':'添加活动';
+  const ev=ei>=0?snap.days[di].events[ei]:{type:'school'};
+  selType(ev.type||'school',false);
+  document.getElementById('fTime').value=ev.time||'';
+  document.getElementById('fTitle').value=ev.title||'';
+  document.getElementById('fSub').value=ev.subtitle||'';
+  document.getElementById('fIcon').value=ev.icon||'';
+  document.getElementById('fItems').value=(ev.items||[]).join('\n');
   openOv('ovForm');
 }
 
-function selType(t, fillDef=true) {
+function selType(t,fill=true){
   document.querySelectorAll('.tp').forEach(p=>p.classList.toggle('on',p.dataset.t===t));
   document.getElementById('fType').value=t;
-  const noTime=['daily_tasks','holiday','free'];
-  const hasSub=['class','holiday','travel','cancelled'];
-  const noIcon=['daily_tasks','free'];
-  document.getElementById('fldItems').style.display = t==='daily_tasks'?'block':'none';
-  document.getElementById('fldTime').style.display  = noTime.includes(t)?'none':'block';
-  document.getElementById('fldTitle').style.display = t==='daily_tasks'?'none':'block';
-  document.getElementById('fldSub').style.display   = hasSub.includes(t)?'block':'none';
-  document.getElementById('fldIcon').style.display  = noIcon.includes(t)?'none':'block';
-  if(fillDef){
-    const defs={school:{title:'学校放学',icon:'🏫'},class:{icon:'🎵'},holiday:{},travel:{icon:'🚄'},free:{title:'自由安排'},cancelled:{icon:'🎨'}};
-    const d=defs[t]||{};
-    if(d.title) document.getElementById('fTitle').value=d.title;
-    if(d.icon)  document.getElementById('fIcon').value=d.icon;
-  }
+  const noTime=['daily_tasks','holiday','free'],hasSub=['class','holiday','travel','cancelled'],noIcon=['daily_tasks','free'];
+  document.getElementById('fldItems').style.display=t==='daily_tasks'?'block':'none';
+  document.getElementById('fldTime').style.display=noTime.includes(t)?'none':'block';
+  document.getElementById('fldTitle').style.display=t==='daily_tasks'?'none':'block';
+  document.getElementById('fldSub').style.display=hasSub.includes(t)?'block':'none';
+  document.getElementById('fldIcon').style.display=noIcon.includes(t)?'none':'block';
+  if(fill){const d={school:{title:'学校放学',icon:'🏫'},class:{icon:'🎵'},travel:{icon:'🚄'},free:{title:'自由安排'},cancelled:{icon:'🎨'}}[t]||{};if(d.title)document.getElementById('fTitle').value=d.title;if(d.icon)document.getElementById('fIcon').value=d.icon}
 }
 
-function pickIc(ic) {
-  document.getElementById('fIcon').value=ic;
-  document.querySelectorAll('.icopt').forEach(e=>e.classList.toggle('sel',e.textContent===ic));
+function pickIc(ic){document.getElementById('fIcon').value=ic;document.querySelectorAll('.icopt').forEach(e=>e.classList.toggle('sel',e.textContent===ic))}
+
+function saveForm(){
+  const type=document.getElementById('fType').value,ev={type};
+  if(type==='daily_tasks'){ev.items=document.getElementById('fItems').value.split('\n').map(s=>s.trim()).filter(Boolean)}
+  else{const t=document.getElementById('fTime').value.trim(),ti=document.getElementById('fTitle').value.trim(),su=document.getElementById('fSub').value.trim(),ic=document.getElementById('fIcon').value.trim();if(t)ev.time=t;if(ti)ev.title=ti;if(su)ev.subtitle=su;if(ic)ev.icon=ic}
+  if(!snap.days[pDay])snap.days[pDay]={events:[]};
+  if(pEv>=0)snap.days[pDay].events[pEv]=ev;else snap.days[pDay].events.push(ev);
+  closeOv('ovForm');render();
 }
 
-function saveForm() {
-  const type=document.getElementById('fType').value;
-  const ev={type};
-  if(type==='daily_tasks'){
-    ev.items=document.getElementById('fItems').value.split('\n').map(s=>s.trim()).filter(Boolean);
-  } else {
-    const t=document.getElementById('fTime').value.trim();
-    const ti=document.getElementById('fTitle').value.trim();
-    const su=document.getElementById('fSub').value.trim();
-    const ic=document.getElementById('fIcon').value.trim();
-    if(t) ev.time=t; if(ti) ev.title=ti; if(su) ev.subtitle=su; if(ic) ev.icon=ic;
-  }
-  if(!snap.days[pDay]) snap.days[pDay]={events:[]};
-  if(pEv>=0) snap.days[pDay].events[pEv]=ev;
-  else       snap.days[pDay].events.push(ev);
-  closeOv('ovForm'); render();
-}
-
-function delEv(di,ei) { snap.days[di].events.splice(ei,1); render(); toast('已删除'); }
+function delEv(di,ei){snap.days[di].events.splice(ei,1);render();toast('已删除')}
 
 // ═══ 历史 ═══
-function openHist() { renderHist(); openOv('ovHist'); }
-
-function renderHist() {
-  const list=document.getElementById('histList'); list.innerHTML='';
-  all.weeks.slice().reverse().forEach((wk,ri) => {
-    const idx=all.weeks.length-1-ri;
-    const item=document.createElement('div');
+function openHist(){renderHist();openOv('ovHist')}
+function renderHist(){
+  const list=document.getElementById('histList');list.innerHTML='';
+  all.weeks.slice().reverse().forEach((wk,ri)=>{
+    const idx=all.weeks.length-1-ri,item=document.createElement('div');
     item.className='hist-item'+(idx===vi?' cur':'');
-    const dates=weekDates(wk.weekStart);
-    item.innerHTML=`<div><div class="hist-range">${fmtRange(dates)}</div>${idx===vi?'<div class="hist-tag">📍 当前查看</div>':''}</div><button class="hist-del" onclick="delWeek(event,${idx})">🗑️</button>`;
-    item.onclick=e=>{ if(e.target.classList.contains('hist-del'))return; vi=idx; closeOv('ovHist'); render(); };
+    item.innerHTML=`<div><div class="hist-range">${fmtRange(weekDates(wk.weekStart))}</div>${idx===vi?'<div class="hist-tag">📍 当前查看</div>':''}</div><button class="hist-del" onclick="delWeek(event,${idx})">🗑️</button>`;
+    item.onclick=e=>{if(e.target.classList.contains('hist-del'))return;vi=idx;closeOv('ovHist');render()};
     list.appendChild(item);
   });
 }
 
-function addWeek() {
-  const last=all.weeks[all.weeks.length-1];
-  const d=new Date(last.weekStart+'T00:00:00'); d.setDate(d.getDate()+7);
-  const nw=JSON.parse(JSON.stringify(last));
-  nw.weekStart=d.toISOString().slice(0,10);
-  nw.days.forEach(day=>{ day.events=day.events.filter(ev=>!['holiday','travel'].includes(ev.type)); });
-  all.weeks.push(nw); vi=all.weeks.length-1;
-  closeOv('ovHist'); render(); toast('已创建下周，请在编辑模式中修改');
-  startEdit();
+function addWeek(){
+  const last=all.weeks[all.weeks.length-1],d=new Date(last.weekStart+'T00:00:00');d.setDate(d.getDate()+7);
+  const nw=JSON.parse(JSON.stringify(last));nw.weekStart=d.toISOString().slice(0,10);
+  nw.days.forEach(day=>{day.events=day.events.filter(ev=>!['holiday','travel'].includes(ev.type))});
+  all.weeks.push(nw);vi=all.weeks.length-1;closeOv('ovHist');render();toast('已创建下周，修改后保存即可同步');startEdit();
 }
 
-function delWeek(e,idx) {
+function delWeek(e,idx){
   e.stopPropagation();
-  if(all.weeks.length<=1){ toast('至少保留一周的日程'); return; }
-  all.weeks.splice(idx,1);
-  if(vi>=all.weeks.length) vi=all.weeks.length-1;
-  renderHist(); render();
+  if(all.weeks.length<=1){toast('至少保留一周');return}
+  all.weeks.splice(idx,1);if(vi>=all.weeks.length)vi=all.weeks.length-1;
+  renderHist();render();
 }
 
 // ═══ AI 提示词 ═══
-function openAI() {
-  if(!all.weeks.length){ toast('日程加载中，请稍后'); return; }
-  const wk=all.weeks[vi];
-  const d=new Date(wk.weekStart+'T00:00:00'); d.setDate(d.getDate()+7);
+function openAI(){
+  const wk=all.weeks[vi],d=new Date(wk.weekStart+'T00:00:00');d.setDate(d.getDate()+7);
   const ns=d.toISOString().slice(0,10);
-  document.getElementById('pbox').textContent=
-`请帮我生成从 ${ns} 开始的下一周学习周历 JSON。
-
-参考当前周：
-${JSON.stringify(wk,null,2)}
-
-只返回 JSON，格式：
-{
-  "title": "宝贝的学习周历",
-  "weekStart": "${ns}",
-  "days": [
-    { "events": [
-      // { "type":"daily_tasks","items":["任务1","任务2"] }
-      // { "type":"school","time":"15:20","title":"学校放学","icon":"🏫" }
-      // { "type":"class","time":"17:00","title":"课程名","subtitle":"机构","icon":"🎵" }
-      // { "type":"holiday","title":"🎉 假期名","subtitle":"活动" }
-      // { "type":"travel","time":"10:00","title":"出发地","subtitle":"→目的地","icon":"🚄" }
-      // { "type":"free","title":"自由安排" }
-      // { "type":"cancelled","time":"15:40","title":"课程名","subtitle":"停课","icon":"🎨" }
-    ]}
-    // 共7个元素，周一到周日
-  ]
-}`;
+  document.getElementById('pbox').textContent=`请帮我生成从 ${ns} 开始的下一周学习周历 JSON。\n\n参考当前周：\n${JSON.stringify(wk,null,2)}\n\n只返回 JSON，格式同上，weekStart 改为 "${ns}"，days 共7个元素对应周一到周日。`;
   openOv('ovAI');
 }
-function copyAI() {
-  navigator.clipboard?.writeText(document.getElementById('pbox').textContent)
-    .then(()=>toast('已复制，发给 Claude 吧 📋')).catch(()=>toast('请手动长按复制'));
-}
-
-// ═══ JSON 导入 ═══
-function importJson() {
-  try {
-    const d=JSON.parse(document.getElementById('jsonInput').value);
-    if(!d.weekStart||!d.days) throw new Error('格式不对');
-    if(!editing) startEdit();
-    snap=d; all.weeks[vi]=JSON.parse(JSON.stringify(d));
-    closeOv('ovJson'); render(); toast('导入成功，记得点保存 💾');
-  } catch(e){ toast('JSON 格式有误：'+e.message); }
-}
+function copyAI(){navigator.clipboard?.writeText(document.getElementById('pbox').textContent).then(()=>toast('已复制 📋')).catch(()=>toast('请手动复制'))}
 
 // ═══ 分享 ═══
-function share() {
-  navigator.clipboard?.writeText(PAGES_URL)
-    .then(()=>toast('链接已复制，发到微信群吧 🔗'))
-    .catch(()=>toast('链接：'+PAGES_URL));
-}
+function share(){navigator.clipboard?.writeText(PAGES_URL).then(()=>toast('链接已复制，发到微信群吧 🔗')).catch(()=>toast('链接：'+PAGES_URL))}
 
-// ═══ Overlay 工具 ═══
-function openOv(id){ document.getElementById(id).classList.add('open'); }
-function closeOv(id){ document.getElementById(id).classList.remove('open'); }
-function bgc(e,id){ if(e.target===document.getElementById(id)) closeOv(id); }
+// ═══ 工具 ═══
+function openOv(id){document.getElementById(id).classList.add('open')}
+function closeOv(id){document.getElementById(id).classList.remove('open')}
+function bgc(e,id){if(e.target===document.getElementById(id))closeOv(id)}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2800)}
 
-// ═══ Toast ═══
-function toast(msg){
-  const el=document.getElementById('toast');
-  el.textContent=msg; el.classList.add('show');
-  setTimeout(()=>el.classList.remove('show'),2800);
-}
-
-// ═══ 初始化 ═══
-async function init() {
-  initUI();
-  try { await loadData(); }
-  catch(e){ toast('网络加载失败，请刷新重试'); }
-  finally{ document.getElementById('loading').classList.add('gone'); }
-}
-init();
+// ═══ 启动（直接用嵌入数据，无需网络请求）═══
+initUI();
+all=JSON.parse(JSON.stringify(SCHEDULE_DATA));
+all.weeks.sort((a,b)=>a.weekStart.localeCompare(b.weekStart));
+vi=findCurWeek();
+render();
 </script>
 </body>
 </html>
