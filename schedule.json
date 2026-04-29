@@ -50,7 +50,8 @@
         { "events": [
             { "type": "holiday", "title": "🎉 劳动节假期（最后一天）", "subtitle": "在济宁" },
             { "type": "class",   "time": "", "title": "英语课", "subtitle": "2小时", "icon": "📚" },
-            { "type": "free",    "title": "⚠️ 截止今日：完成学校劳动节作业" }
+            { "type": "free",    "title": "⚠️ 截止今日：完成学校劳动节作业" },
+            { "type": "travel",  "time": "13:10", "title": "济宁北出发", "subtitle": "高铁返程 → 北京", "icon": "🚄" }
         ]},
         { "events": [
             { "type": "daily_tasks", "items": ["英语托托", "数学题打卡", "默写高手"] },
