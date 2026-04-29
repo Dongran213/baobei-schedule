@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>宝贝的学习周历 ⭐</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+            background: #FFF5FB;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(circle, #FFB6D9 1.2px, transparent 1.2px);
+            background-size: 28px 28px;
+            opacity: 0.18;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── Header ── */
+        .header {
+            background: linear-gradient(135deg, #FFB6D9 0%, #CDB4F8 55%, #A8D8FF 100%);
+            padding: 18px 20px 22px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .header-deco {
+            position: absolute;
+            top: 8px; right: 14px;
+            font-size: 20px;
+            opacity: 0.45;
+            letter-spacing: 5px;
+            pointer-events: none;
+        }
+
+        .header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .header-left { display: flex; align-items: center; gap: 10px; }
+        .header-icon { font-size: 30px; }
+
+        .header-title {
+            font-size: 21px;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 2px 8px rgba(180,80,150,0.25);
+            letter-spacing: 1px;
+        }
+
+        .header-date {
+            background: rgba(255,255,255,0.38);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 13px;
+            font-weight: 700;
+            color: white;
+            white-space: nowrap;
+        }
+
+        /* ── Calendar ── */
+        .calendar-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 14px 12px 100px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(128px, 1fr));
+            gap: 10px;
+            min-width: 900px;
+        }
+
+        .day-col { display: flex; flex-direction: column; gap: 8px; }
+
+        .day-header {
+            text-align: center;
+            padding: 10px 6px 8px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 2px 10px rgba(200,100,180,0.1);
+            border: 2px solid transparent;
+        }
+
+        .day-header.is-weekend { border-color: #FFB6D9; }
+        .day-header.is-today   { background: linear-gradient(135deg, #FF9FCE, #C9B8FF); }
+
+        .day-name { font-size: 15px; font-weight: 800; color: #444; }
+        .day-name.wknd { color: #FF6B8A; }
+        .day-header.is-today .day-name,
+        .day-header.is-today .day-date { color: white; }
+        .day-date { font-size: 12px; color: #bbb; margin-top: 2px; }
+
+        /* ── Cards ── */
+        .card { border-radius: 16px; padding: 10px 12px; font-size: 13px; }
+
+        .card-daily { background: #FFFBEA; border: 2px dashed #FBBF24; }
+        .daily-label { font-size: 11px; font-weight: 800; color: #F59E0B; margin-bottom: 6px; }
+        .daily-item  { font-size: 12px; color: #666; line-height: 1.75; padding-left: 2px; }
+
+        .card-school    { background: linear-gradient(135deg, #FFB347, #FF9F43); color: white; }
+        .card-class     { background: linear-gradient(135deg, #F472B6, #C084FC); color: white; }
+        .card-holiday   { background: linear-gradient(135deg, #FF8FAB, #FF6B8A); color: white; min-height: 58px; }
+        .card-travel    { background: linear-gradient(135deg, #60C8F5, #38B6FF); color: white; }
+        .card-free      { background: white; border: 1.5px solid #F9C8E0; color: #999; }
+        .card-cancelled { background: #F5F5F5; border: 1.5px dashed #DDD; color: #C0C0C0; }
+
+        .badge-cancelled {
+            display: inline-block;
+            background: #E8E8E8; color: #C0C0C0;
+            font-size: 10px; border-radius: 8px;
+            padding: 1px 7px; margin-top: 4px;
+        }
+
+        .card-time  { font-size: 11px; font-weight: 700; opacity: 0.88; margin-bottom: 4px; }
+        .card-main  { display: flex; align-items: center; gap: 6px; }
+        .card-icon  { font-size: 17px; flex-shrink: 0; }
+        .card-title { font-weight: 700; font-size: 14px; line-height: 1.3; }
+        .card-sub   { font-size: 11px; opacity: 0.85; margin-top: 3px; }
+
+        /* ── FABs ── */
+        .fabs {
+            position: fixed; bottom: 28px; right: 18px;
+            display: flex; flex-direction: column; gap: 12px;
+            z-index: 50;
+        }
+
+        .fab {
+            width: 52px; height: 52px; border-radius: 50%;
+            border: none; cursor: pointer; font-size: 22px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            transition: transform 0.15s;
+        }
+
+        .fab:active { transform: scale(0.9); }
+        .fab-setup  { background: linear-gradient(135deg, #B0B0B0, #909090); }
+        .fab-prompt { background: linear-gradient(135deg, #FAAD14, #FFC53D); }
+        .fab-edit   { background: linear-gradient(135deg, #FFB6D9, #C9B8FF); }
+
+        /* ── Overlays ── */
+        .overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.38); z-index: 100;
+            align-items: flex-end;
+        }
+        .overlay.open { display: flex; }
+
+        .sheet {
+            background: white;
+            border-radius: 26px 26px 0 0;
+            padding: 16px 20px 36px;
+            width: 100%; max-height: 88vh;
+            overflow-y: auto;
+        }
+
+        .sheet-handle {
+            width: 40px; height: 4px;
+            background: #E8D5EE; border-radius: 2px;
+            margin: 0 auto 16px;
+        }
+
+        .sheet-title { font-size: 17px; font-weight: 800; color: #333; margin-bottom: 6px; }
+        .sheet-hint  { font-size: 12px; color: #AAA; line-height: 1.65; margin-bottom: 14px; }
+
+        .field-label { font-size: 12px; font-weight: 700; color: #888; margin-bottom: 5px; }
+
+        input, textarea {
+            width: 100%; border: 2px solid #F3D0E8;
+            border-radius: 14px; padding: 12px;
+            font-size: 14px; outline: none; color: #555;
+            margin-bottom: 12px;
+            font-family: inherit;
+        }
+
+        input:focus, textarea:focus { border-color: #C9B8FF; }
+
+        textarea {
+            height: 240px;
+            font-family: 'Menlo', 'Monaco', monospace;
+            font-size: 11px; line-height: 1.55;
+            resize: vertical; margin-bottom: 0;
+        }
+
+        .sheet-btns { display: flex; gap: 10px; margin-top: 14px; }
+
+        .sbtn {
+            flex: 1; padding: 14px; border-radius: 14px;
+            border: none; font-size: 15px; font-weight: 700; cursor: pointer;
+        }
+
+        .sbtn-cancel { background: #F5F5F5; color: #999; }
+        .sbtn-pink   { background: linear-gradient(135deg, #FFB6D9, #C9B8FF); color: white; }
+        .sbtn-yellow { background: linear-gradient(135deg, #FAAD14, #FFC53D); color: white; }
+
+        .prompt-box {
+            background: #F9F0FF; border: 1.5px solid #E0D0FF;
+            border-radius: 14px; padding: 14px;
+            font-size: 12px; color: #555; line-height: 1.7;
+            white-space: pre-wrap; word-break: break-word;
+            max-height: 300px; overflow-y: auto;
+        }
+
+        /* ── Loading ── */
+        .loading {
+            position: fixed; inset: 0;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            background: #FFF5FB; z-index: 200;
+            font-size: 15px; color: #C9B8FF; gap: 12px;
+        }
+
+        .loading.hide { display: none; }
+        .spin { font-size: 36px; animation: spin 1.5s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── Toast ── */
+        .toast {
+            position: fixed; bottom: 96px; left: 50%;
+            transform: translateX(-50%);
+            background: rgba(40,40,40,0.82); color: white;
+            padding: 10px 22px; border-radius: 22px;
+            font-size: 14px; display: none; z-index: 300;
+            white-space: nowrap;
+        }
+        .toast.show { display: block; }
+
+        /* ── Setup hint ── */
+        .setup-hint {
+            background: #FFF0F8; border: 1.5px dashed #FFB6D9;
+            border-radius: 14px; padding: 14px; margin-bottom: 12px;
+            font-size: 12px; color: #888; line-height: 1.7;
+        }
+
+        .setup-hint a { color: #C084FC; }
+
+        .link-row {
+            display: flex; gap: 8px; align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .link-row input { margin-bottom: 0; flex: 1; font-size: 12px; }
+
+        .copy-btn {
+            padding: 10px 14px; border-radius: 12px;
+            border: none; background: #F3D0E8;
+            color: #C084FC; font-size: 12px; font-weight: 700;
+            cursor: pointer; white-space: nowrap; flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Loading -->
+<div class="loading" id="loading">
+    <span class="spin">🌸</span>
+    <span>加载中…</span>
+</div>
+
+<!-- Header -->
+<div class="header">
+    <div class="header-deco">⭐🌈🎀✨🌸</div>
+    <div class="header-row">
+        <div class="header-left">
+            <span class="header-icon">🌟</span>
+            <span class="header-title" id="appTitle">宝贝的学习周历</span>
+        </div>
+        <div class="header-date" id="dateRange">—</div>
+    </div>
+</div>
+
+<!-- Calendar -->
+<div class="calendar-wrap">
+    <div class="calendar" id="calendar"></div>
+</div>
+
+<!-- FABs -->
+<div class="fabs">
+    <button class="fab fab-setup"  onclick="openOverlay('setupOverlay')" title="⚙️ 设置">⚙️</button>
+    <button class="fab fab-prompt" onclick="openPrompt()"                title="🤖 AI提示词">🤖</button>
+    <button class="fab fab-edit"   onclick="openEdit()"                  title="✏️ 编辑日程">✏️</button>
+</div>
+
+<!-- ── 设置弹层 ── -->
+<div class="overlay" id="setupOverlay" onclick="bgClose(event,'setupOverlay')">
+    <div class="sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-title">⚙️ GitHub 设置</div>
+
+        <div class="setup-hint">
+            首次使用需要配置 GitHub 信息。配置完成后，家人打开固定链接就能看到最新日程。<br><br>
+            <b>获取 Token：</b>打开 GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token，勾选 <b>repo</b> 权限。
+        </div>
+
+        <div class="field-label">GitHub 用户名</div>
+        <input id="cfgOwner" placeholder="例如：dongran-liu" />
+
+        <div class="field-label">仓库名称</div>
+        <input id="cfgRepo"  placeholder="例如：baobei-schedule" />
+
+        <div class="field-label">Personal Access Token</div>
+        <input id="cfgToken" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" />
+
+        <div class="field-label">家人访问链接（配置完成后复制给家人）</div>
+        <div class="link-row">
+            <input id="shareLink" readonly placeholder="填写上方信息后自动生成" />
+            <button class="copy-btn" onclick="copyShareLink()">复制</button>
+        </div>
+
+        <div class="sheet-btns">
+            <button class="sbtn sbtn-cancel" onclick="closeOverlay('setupOverlay')">取消</button>
+            <button class="sbtn sbtn-pink"   onclick="saveConfig()">保存 ✨</button>
+        </div>
+    </div>
+</div>
+
+<!-- ── 编辑弹层 ── -->
+<div class="overlay" id="editOverlay" onclick="bgClose(event,'editOverlay')">
+    <div class="sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-title">✏️ 更新日程</div>
+        <div class="sheet-hint">将 AI 生成的 JSON 粘贴到下方，点「保存」自动同步到 GitHub 🎉</div>
+        <textarea id="jsonEditor" placeholder="粘贴 JSON 数据…"></textarea>
+        <div class="sheet-btns">
+            <button class="sbtn sbtn-cancel" onclick="closeOverlay('editOverlay')">取消</button>
+            <button class="sbtn sbtn-pink"   onclick="saveEdit()" id="saveBtn">保存 ✨</button>
+        </div>
+    </div>
+</div>
+
+<!-- ── AI 提示词弹层 ── -->
+<div class="overlay" id="promptOverlay" onclick="bgClose(event,'promptOverlay')">
+    <div class="sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-title">🤖 AI 生成提示词</div>
+        <div class="sheet-hint">复制下方内容发给 Claude，得到 JSON 后回到「编辑日程」粘贴保存。</div>
+        <div class="prompt-box" id="promptBox"></div>
+        <div class="sheet-btns">
+            <button class="sbtn sbtn-cancel" onclick="closeOverlay('promptOverlay')">关闭</button>
+            <button class="sbtn sbtn-yellow" onclick="copyPrompt()">复制提示词 📋</button>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════
+//  Config
+// ═══════════════════════════════════════
+function getCfg() {
+    return {
+        owner: localStorage.getItem('gh_owner') || '',
+        repo:  localStorage.getItem('gh_repo')  || 'baobei-schedule',
+        token: localStorage.getItem('gh_token') || ''
+    };
+}
+
+function pagesUrl(cfg) {
+    return `https://${cfg.owner}.github.io/${cfg.repo}/`;
+}
+
+function rawUrl(cfg) {
+    return `https://raw.githubusercontent.com/${cfg.owner}/${cfg.repo}/main/schedule.json?t=${Date.now()}`;
+}
+
+// 实时更新分享链接预览
+function updateLinkPreview() {
+    const owner = document.getElementById('cfgOwner').value.trim();
+    const repo  = document.getElementById('cfgRepo').value.trim() || 'baobei-schedule';
+    if (owner) {
+        document.getElementById('shareLink').value = `https://${owner}.github.io/${repo}/`;
+    }
+}
+
+document.getElementById('cfgOwner').addEventListener('input', updateLinkPreview);
+document.getElementById('cfgRepo').addEventListener('input', updateLinkPreview);
+
+function copyShareLink() {
+    const val = document.getElementById('shareLink').value;
+    if (!val) { toast('请先填写 GitHub 用户名'); return; }
+    navigator.clipboard?.writeText(val)
+        .then(()  => toast('链接已复制，发给家人吧 🔗'))
+        .catch(() => toast('请手动复制链接'));
+}
+
+function saveConfig() {
+    const owner = document.getElementById('cfgOwner').value.trim();
+    const repo  = document.getElementById('cfgRepo').value.trim()  || 'baobei-schedule';
+    const token = document.getElementById('cfgToken').value.trim();
+    if (!owner || !token) { toast('用户名和 Token 不能为空 ⚠️'); return; }
+    localStorage.setItem('gh_owner', owner);
+    localStorage.setItem('gh_repo',  repo);
+    localStorage.setItem('gh_token', token);
+    closeOverlay('setupOverlay');
+    toast('设置已保存，正在加载日程…');
+    init();
+}
+
+// ═══════════════════════════════════════
+//  Data fetch & push
+// ═══════════════════════════════════════
+let cur = null;
+
+async function fetchSchedule() {
+    const cfg = getCfg();
+    const res = await fetch(rawUrl(cfg));
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+}
+
+async function pushToGitHub(data) {
+    const cfg = getCfg();
+    const apiUrl = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/schedule.json`;
+    const headers = {
+        'Authorization': `token ${cfg.token}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+    };
+
+    // 获取当前文件 SHA
+    const getRes = await fetch(apiUrl, { headers });
+    if (!getRes.ok) throw new Error('无法读取文件，请检查 Token 和仓库名');
+    const { sha } = await getRes.json();
+
+    // 提交新内容
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+    const putRes = await fetch(apiUrl, {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify({
+            message: `更新宝贝的学习周历 ${new Date().toLocaleDateString('zh-CN')}`,
+            content,
+            sha
+        })
+    });
+    if (!putRes.ok) {
+        const err = await putRes.json();
+        throw new Error(err.message || '提交失败');
+    }
+}
+
+// ═══════════════════════════════════════
+//  Render
+// ═══════════════════════════════════════
+const DAY_NAMES = ['周一','周二','周三','周四','周五','周六','周日'];
+
+function weekDates(start) {
+    const base = new Date(start + 'T00:00:00');
+    return Array.from({length:7}, (_,i) => { const d=new Date(base); d.setDate(d.getDate()+i); return d; });
+}
+
+function fmtRange(dates) {
+    const s=dates[0], e=dates[6];
+    const [sm,sd,em,ed]=[s.getMonth()+1,s.getDate(),e.getMonth()+1,e.getDate()];
+    return sm===em ? `${sm}月${sd}日 - ${ed}日` : `${sm}月${sd}日 - ${em}月${ed}日`;
+}
+
+function isToday(d) {
+    const t=new Date();
+    return d.getDate()===t.getDate()&&d.getMonth()===t.getMonth()&&d.getFullYear()===t.getFullYear();
+}
+
+function buildCard(ev) {
+    const el = document.createElement('div');
+    if (ev.type === 'daily_tasks') {
+        el.className = 'card card-daily';
+        el.innerHTML = `<div class="daily-label">✅ 每日必做</div>` +
+            ev.items.map(i=>`<div class="daily-item">• ${i}</div>`).join('');
+        return el;
+    }
+    const cls = {school:'card-school',class:'card-class',holiday:'card-holiday',
+                  travel:'card-travel',free:'card-free',cancelled:'card-cancelled'}[ev.type]||'card-free';
+    el.className = `card ${cls}`;
+    let h = ev.time ? `<div class="card-time">${ev.time}</div>` : '';
+    h += `<div class="card-main">${ev.icon?`<span class="card-icon">${ev.icon}</span>`:''}<span class="card-title">${ev.title}</span></div>`;
+    if (ev.subtitle) h += `<div class="card-sub">${ev.subtitle}</div>`;
+    if (ev.type==='cancelled') h += `<div><span class="badge-cancelled">本周停课</span></div>`;
+    el.innerHTML = h;
+    return el;
+}
+
+function render(data) {
+    const dates = weekDates(data.weekStart);
+    document.getElementById('dateRange').textContent  = fmtRange(dates);
+    document.getElementById('appTitle').textContent   = data.title || '宝贝的学习周历';
+    document.title = (data.title||'宝贝的学习周历') + ' ⭐';
+    const cal = document.getElementById('calendar');
+    cal.innerHTML = '';
+    dates.forEach((date, i) => {
+        const wknd = i >= 4;
+        const col  = document.createElement('div');
+        col.className = 'day-col';
+        const hdr = document.createElement('div');
+        hdr.className = 'day-header'+(wknd?' is-weekend':'')+(isToday(date)?' is-today':'');
+        hdr.innerHTML = `<div class="day-name${wknd?' wknd':''}">${DAY_NAMES[i]}</div><div class="day-date">${date.getMonth()+1}/${date.getDate()}</div>`;
+        col.appendChild(hdr);
+        (data.days[i]?.events||[]).forEach(ev=>col.appendChild(buildCard(ev)));
+        cal.appendChild(col);
+    });
+}
+
+// ═══════════════════════════════════════
+//  Edit
+// ═══════════════════════════════════════
+function openEdit() {
+    if (!cur) { toast('日程未加载，请先完成设置 ⚙️'); return; }
+    document.getElementById('jsonEditor').value = JSON.stringify(cur, null, 2);
+    openOverlay('editOverlay');
+}
+
+async function saveEdit() {
+    const btn = document.getElementById('saveBtn');
+    try {
+        const data = JSON.parse(document.getElementById('jsonEditor').value);
+        btn.textContent = '保存中…'; btn.disabled = true;
+        await pushToGitHub(data);
+        cur = data; render(data);
+        closeOverlay('editOverlay');
+        toast('日程已同步到 GitHub 🎉');
+    } catch(e) {
+        toast('保存失败：' + e.message);
+    } finally {
+        btn.textContent = '保存 ✨'; btn.disabled = false;
+    }
+}
+
+// ═══════════════════════════════════════
+//  AI Prompt
+// ═══════════════════════════════════════
+function nextMonday() {
+    if (!cur) return '下周一';
+    const d = new Date(cur.weekStart + 'T00:00:00');
+    d.setDate(d.getDate()+7);
+    return d.toISOString().slice(0,10);
+}
+
+function buildPrompt() {
+    return `请帮我生成下周（从 ${nextMonday()} 周一开始）的学习周历 JSON。
+
+参考当前周日程：
+${JSON.stringify(cur, null, 2)}
+
+请严格按以下格式输出，只返回 JSON，不要任何解释：
+
+{
+  "title": "宝贝的学习周历",
+  "weekStart": "YYYY-MM-DD",
+  "days": [
+    {
+      "events": [
+        // 可用类型（选其中合适的）：
+        // { "type": "daily_tasks", "items": ["任务1", "任务2"] }
+        // { "type": "school",    "time": "15:20", "title": "学校放学", "icon": "🏫" }
+        // { "type": "class",     "time": "17:00", "title": "课程名", "subtitle": "机构", "icon": "🎵" }
+        // { "type": "holiday",   "title": "🎉 假期名", "subtitle": "活动" }
+        // { "type": "travel",    "time": "10:00", "title": "出发地", "subtitle": "→ 目的地", "icon": "🚄" }
+        // { "type": "free",      "title": "自由安排" }
+        // { "type": "cancelled", "time": "15:40", "title": "课程名", "subtitle": "停课说明", "icon": "🎨" }
+      ]
+    }
+    // ... 共 7 个元素，对应周一到周日
+  ]
+}`;
+}
+
+function openPrompt() {
+    document.getElementById('promptBox').textContent = buildPrompt();
+    openOverlay('promptOverlay');
+}
+
+function copyPrompt() {
+    navigator.clipboard?.writeText(document.getElementById('promptBox').textContent)
+        .then(()  => toast('提示词已复制，去问 AI 吧 📋'))
+        .catch(()  => toast('请手动长按复制'));
+}
+
+// ═══════════════════════════════════════
+//  Overlays & Toast
+// ═══════════════════════════════════════
+function openOverlay(id)  { document.getElementById(id).classList.add('open'); }
+function closeOverlay(id) { document.getElementById(id).classList.remove('open'); }
+function bgClose(e, id)   { if (e.target===document.getElementById(id)) closeOverlay(id); }
+
+function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(()=>el.classList.remove('show'), 2800);
+}
+
+// ═══════════════════════════════════════
+//  Init
+// ═══════════════════════════════════════
+async function init() {
+    const cfg = getCfg();
+    document.getElementById('loading').classList.remove('hide');
+
+    // 预填设置表单
+    document.getElementById('cfgOwner').value = cfg.owner;
+    document.getElementById('cfgRepo').value  = cfg.repo;
+    document.getElementById('cfgToken').value = cfg.token;
+    if (cfg.owner) document.getElementById('shareLink').value = pagesUrl(cfg);
+
+    if (!cfg.owner || !cfg.token) {
+        document.getElementById('loading').classList.add('hide');
+        openOverlay('setupOverlay');
+        return;
+    }
+
+    try {
+        cur = await fetchSchedule();
+        render(cur);
+    } catch(e) {
+        toast('加载失败，请检查设置 ⚠️');
+        openOverlay('setupOverlay');
+    } finally {
+        document.getElementById('loading').classList.add('hide');
+    }
+}
+
+init();
+</script>
+</body>
+</html>
