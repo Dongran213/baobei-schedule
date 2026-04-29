@@ -66,11 +66,11 @@
         { "events": [
             { "type": "daily_tasks", "items": ["英语托托", "数学题打卡", "默写高手"] },
             { "type": "school", "time": "16:20", "title": "学校放学", "icon": "🏫" },
-            { "type": "class",  "time": "18:10", "title": "高思数学", "subtitle": "18:10-20:10 · 瑞辰国际中心1层", "icon": "📐" },
-            { "type": "free",   "title": "自由安排 / 查漏补缺" }
+            { "type": "class",  "time": "18:10", "title": "高思数学", "subtitle": "18:10-20:10 · 瑞辰国际中心1层", "icon": "📐" }
         ]},
         { "events": [
-            { "type": "school", "time": "08:30", "title": "补课（补周二）", "subtitle": "正常上课时间", "icon": "🏫" }
+            { "type": "school", "time": "08:30", "title": "补课（补周二）", "subtitle": "正常上课时间", "icon": "🏫" },
+            { "type": "school", "time": "16:20", "title": "学校放学", "subtitle": "补周二课，放学较晚", "icon": "🏫" }
         ]},
         { "events": [
             { "type": "free", "title": "周末休息 🌸" }
