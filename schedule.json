@@ -76,6 +76,44 @@
             { "type": "free", "title": "周末休息 🌸" }
         ]}
       ]
+    },
+    {
+      "title": "宝贝的学习周历",
+      "weekStart": "2026-05-11",
+      "days": [
+        { "events": [
+            { "type": "daily_tasks", "items": ["英语托托", "数学题打卡", "默写高手"] },
+            { "type": "school", "time": "15:20", "title": "学校放学", "icon": "🏫" },
+            { "type": "class",  "time": "17:00", "title": "音乐课", "subtitle": "猫头鹰", "icon": "🎵" }
+        ]},
+        { "events": [
+            { "type": "daily_tasks", "items": ["英语托托", "数学题打卡", "默写高手"] },
+            { "type": "school", "time": "16:20", "title": "学校放学", "icon": "🏫" },
+            { "type": "free",   "title": "自由安排 / 查漏补缺" }
+        ]},
+        { "events": [
+            { "type": "daily_tasks", "items": ["英语托托", "数学题打卡", "默写高手"] },
+            { "type": "school", "time": "16:20", "title": "学校放学", "icon": "🏫" },
+            { "type": "class",  "time": "", "title": "线上英语课", "subtitle": "线上课", "icon": "📚" },
+            { "type": "free",   "title": "自由安排 / 查漏补缺" }
+        ]},
+        { "events": [
+            { "type": "daily_tasks", "items": ["英语托托", "数学题打卡", "默写高手"] },
+            { "type": "school", "time": "15:30", "title": "学校放学", "icon": "🏫" },
+            { "type": "class",  "time": "15:40", "title": "画画课", "subtitle": "猫头鹰", "icon": "🎨" }
+        ]},
+        { "events": [
+            { "type": "daily_tasks", "items": ["英语托托", "数学题打卡", "默写高手"] },
+            { "type": "school", "time": "16:20", "title": "学校放学", "icon": "🏫" },
+            { "type": "class",  "time": "18:10", "title": "高思数学", "subtitle": "18:10-20:10 · 瑞辰国际中心1层", "icon": "📐" }
+        ]},
+        { "events": [
+            { "type": "free", "title": "周末休息 🌸" }
+        ]},
+        { "events": [
+            { "type": "free", "title": "周末休息 🌸" }
+        ]}
+      ]
     }
   ]
 }
