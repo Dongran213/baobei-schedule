@@ -60,12 +60,12 @@
         ]},
         { "events": [
             { "type": "daily_tasks", "items": ["英语托托", "数学题打卡", "默写高手"] },
-            { "type": "school", "time": "15:30", "title": "学校放学", "icon": "🏫" },
-            { "type": "class",  "time": "15:40", "title": "画画课", "subtitle": "猫头鹰", "icon": "🎨" }
+            { "type": "school", "time": "15:20", "title": "学校放学", "icon": "🏫" },
+            { "type": "class",  "time": "15:40", "title": "画画课", "subtitle": "梦途", "icon": "🎨" }
         ]},
         { "events": [
             { "type": "daily_tasks", "items": ["英语托托", "数学题打卡", "默写高手"] },
-            { "type": "school", "time": "16:20", "title": "学校放学", "icon": "🏫" },
+            { "type": "school", "time": "15:20", "title": "学校放学", "icon": "🏫" },
             { "type": "class",  "time": "18:10", "title": "高思数学", "subtitle": "18:10-20:10 · 瑞辰国际中心1层", "icon": "📐" }
         ]},
         { "events": [
@@ -98,12 +98,12 @@
         ]},
         { "events": [
             { "type": "daily_tasks", "items": ["英语托托", "数学题打卡", "默写高手"] },
-            { "type": "school", "time": "15:30", "title": "学校放学", "icon": "🏫" },
+            { "type": "school", "time": "15:20", "title": "学校放学", "icon": "🏫" },
             { "type": "class",  "time": "15:40", "title": "画画课", "subtitle": "梦途", "icon": "🎨" }
         ]},
         { "events": [
             { "type": "daily_tasks", "items": ["英语托托", "数学题打卡", "默写高手"] },
-            { "type": "school", "time": "16:20", "title": "学校放学", "icon": "🏫" },
+            { "type": "school", "time": "15:20", "title": "学校放学", "icon": "🏫" },
             { "type": "class",  "time": "18:10", "title": "高思数学", "subtitle": "18:10-20:10 · 瑞辰国际中心1层", "icon": "📐" }
         ]},
         { "events": [
